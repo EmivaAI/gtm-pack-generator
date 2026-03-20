@@ -1,0 +1,66 @@
+{
+  "workspace": {
+    "name": "Acme Analytics"
+  },
+  "brand_profile": {
+    "product_summary": "A real-time data visualization and AI analytics platform for enterprise data teams.",
+    "tone_rules": ["Professional", "Data-driven", "No fluff", "Active voice"],
+    "allowed_claims": ["Reduces reporting time by 40%", "Enterprise-grade SOC2 certified"],
+    "disallowed_claims": ["Guaranteed to double your revenue", "Cheapest analytics on the market"]
+  },
+  "audience_segments": [
+    {
+      "persona_name": "VP of Data Engineering",
+      "pain_points": ["Data pipelines constantly breaking", "Lack of visibility into query costs"],
+      "desired_outcomes": ["Reliable, automated reporting", "Cost governance"]
+    },
+    {
+      "persona_name": "Head of Sales",
+      "pain_points": ["Sales reps don't know how to pitch the AI features", "Competitors moving faster"],
+      "desired_outcomes": ["Higher win rates", "Confident reps handling objections"]
+    }
+  ],
+  "history_launches": [
+    {
+      "jira_key": "DATA-892",
+      "feature_title": "Predictive Query Routing",
+      "description": "Our new AI engine automatically routes heavy analytical queries to warehouse instances with the lowest current compute cost, saving enterprises up to 30% on Snowflake/BigQuery bills without sacrificing speed.",
+      "tier": "TIER_1",
+      "score": 92,
+      "reasons": ["High cost-saving impact", "Addresses #1 customer pain point in Q3", "Strong AI narrative"],
+      "is_external_safe": true,
+      "status": "APPROVED",
+      "days_ago": 5,
+      "assets": {
+        "INTERNAL_BRIEF": "SUMMARY: Predictive Query Routing is LIVE.\nVALUE PROP: Saves customers 30% on compute by intelligently routing queries.\nAUDIENCE: Data Engineering Leads who own the Snowflake budget.\nPRICING: Included in Enterprise tier.",
+        "SALES_SNIPPET": "Acme Analytics now features Predictive Query Routing, which automatically slashes your data warehouse compute bills by up to 30% without any performance hit. Want to see a custom savings projection?",
+        "EMAIL": {
+          "variant_a": "Subject: Slash your data warehouse bills by 30%\n\nHi there, we just launched Predictive Query Routing. It automatically routes your heavy queries to the most cost-effective compute instances. Setup takes 5 minutes. Let's chat.",
+          "variant_b": "Subject: Introducing Predictive Query Routing for Acme Analytics\n\nHi there,\n\nWe know that managing Snowflake and BigQuery costs is a massive headache for data teams. That's why today, we're thrilled to announce Predictive Query Routing.\n\nOur new AI engine analyzes query payload and automatically routes it to the most efficient compute cluster. Early beta customers have seen up to 30% reductions in their monthly bills, with zero impact on query resolution times.\n\nRead the full technical breakdown on our blog, or reply here to get early access functionality."
+        },
+        "LINKEDIN": {
+          "variant_a": "🚀 STOP OVERPAYING FOR COMPUTE. Today we are launching Predictive Query Routing. Automatically slash your data warehouse bills by 30%. Link in the comments to see how it works! #DataEngineering #SaaS",
+          "variant_b": "Data teams are under more pressure than ever to control cloud costs 💸\n\nWe spent the last 6 months building a solution: Predictive Query Routing. Instead of manually predicting compute sizes, our AI evaluates the query load and routes it to the most cost-effective instance in real-time. \n\nNo performance hit. Just an automatic 30% savings on your warehouse bill. \n\nCheck out the architecture deep-dive below. 👇 \n#DataOps #AI #Analytics"
+        }
+      },
+      "approval": {
+        "action": "APPROVED_WITH_EDITS",
+        "comments": "Variant B was much better for this audience. Just tweaked the subject line slightly to be more professional.",
+        "edit_diff": {"subject_old": "Introducing Predictive...", "subject_new": "New: Predictive Query Routing"}
+      }
+    }
+  ],
+  "pending_launches": [
+    {
+      "jira_key": "DATA-905",
+      "feature_title": "SSO Integration for Azure Active Directory",
+      "description": "Enterprise customers can now log in using Microsoft Azure AD via SAML 2.0. This bypasses the old OAuth flow and enforces organizational 2FA.",
+      "tier": "TIER_2",
+      "score": 75,
+      "reasons": ["Strong unblocker for Enterprise pipelines", "Highly requested by 4 key accounts"],
+      "is_external_safe": true,
+      "status": "PENDING_REVIEW",
+      "hours_ago": 3
+    }
+  ]
+}
