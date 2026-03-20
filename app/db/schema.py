@@ -37,6 +37,8 @@ class AssetType(enum.Enum):
     LINKEDIN = "LINKEDIN"
     SALES_SNIPPET = "SALES_SNIPPET"
     INTERNAL_BRIEF = "INTERNAL_BRIEF"
+    CHANGELOG = "CHANGELOG"
+    SUPPORT_SNIPPET = "SUPPORT_SNIPPET"
 
 class AssetStatus(enum.Enum):
     DRAFT = "DRAFT"

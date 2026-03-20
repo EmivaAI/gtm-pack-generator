@@ -61,34 +61,36 @@ interactions:
   response:
     body:
       string: !!binary |
-        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
-        /APtwcA27QoAAA==
+        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
     headers:
       CF-RAY:
-      - 9df3a0325c7a4055-BOM
+      - 9df4bc965f758ee2-BOM
       Cache-Control:
       - private, max-age=0, no-store, no-cache, must-revalidate
       Connection:
@@ -98,7 +100,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 20 Mar 2026 09:17:48 GMT
+      - Fri, 20 Mar 2026 12:31:57 GMT
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -110,8 +112,8 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       set-cookie:
-      - __cf_bm=KTeEhce6m1jrOQTKmasLbbXJtrR3HmzahUHSrvSM2O8-1773998267.2600434-1.0.1.1-ptlNAF5MK98.4_CIvNvpbF_YevJO8Sp_u0YieVJ9TPkN76jmPVlY2ACu2oRJi2O744tTrhMY0ZfRonDTEcCKM8SNNPTCD2nQMVUNYvpvwqlf6kQiqBRtPiHqK556BT2R;
-        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 09:47:48
+      - __cf_bm=73OfGEuQowIAYNSdbiBJA2encgO3F.WCn2Qu4vyA3Fw-1774009915.8993115-1.0.1.1-.GYZV49HNCATBAI_rTNZrIj2yQv5gd43mW3lU9f1mEqRZyRyF..d9lt3kHQSKGluQ7FjWWthuXNpQ3n6ApnFsrELUrJ57F6IJ5C1wGKjB28ytvMiMDmf0IzAxQdI2QJ3;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 13:01:57
         GMT
       vary:
       - Origin
@@ -124,15 +126,15 @@ interactions:
       x-ratelimit-limit-tokens:
       - '12000'
       x-ratelimit-remaining-requests:
-      - '943'
+      - '999'
       x-ratelimit-remaining-tokens:
       - '11568'
       x-ratelimit-reset-requests:
-      - 1h22m4.8s
+      - 1m26.4s
       x-ratelimit-reset-tokens:
       - 2.159s
       x-request-id:
-      - req_01km58jpx1fvgtp8mga38ga6a2
+      - req_01km5kp6h0es8aymk64wacjzzg
     status:
       code: 200
       message: OK
@@ -172,7 +174,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - __cf_bm=KTeEhce6m1jrOQTKmasLbbXJtrR3HmzahUHSrvSM2O8-1773998267.2600434-1.0.1.1-ptlNAF5MK98.4_CIvNvpbF_YevJO8Sp_u0YieVJ9TPkN76jmPVlY2ACu2oRJi2O744tTrhMY0ZfRonDTEcCKM8SNNPTCD2nQMVUNYvpvwqlf6kQiqBRtPiHqK556BT2R
+      - __cf_bm=73OfGEuQowIAYNSdbiBJA2encgO3F.WCn2Qu4vyA3Fw-1774009915.8993115-1.0.1.1-.GYZV49HNCATBAI_rTNZrIj2yQv5gd43mW3lU9f1mEqRZyRyF..d9lt3kHQSKGluQ7FjWWthuXNpQ3n6ApnFsrELUrJ57F6IJ5C1wGKjB28ytvMiMDmf0IzAxQdI2QJ3
       Host:
       - api.groq.com
       User-Agent:
@@ -198,22 +200,20 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAA/11UTW/bOBC991cQBBZ7sQxJlmzJl6LoZXPaBVJgD21hjMSRxIQiFXIYxwj833fo
-        KCm6FwMaznvz3nz4VWolj7KfgPp5MZkqmgq6YZfVnWqyqts3WQt5kQ31rihaKMsuR7mRrnvAnlbg
-        tncMRdLO8lPvEQiZtDgcdm3blPt2I2en0HC6MTBDttvuskPeZc/oA5A2ibGfnO4xyOP3V6mtwhd5
-        zBmHIcCI8vgqveO8o4QQdCCwlDDOEtok44f8S2/EnTjzAypBTmhL3qnYo7i4mAL3M3gSXwx6Chvh
-        ohcWz+LLXba4M3oGgXUzmItQSOyNzYiBnUSPW/Gvpul/BMz6pzECIjGKdA+GoSOSsI70oBNf5yIJ
-        1koseE0IerT82rNMMSN53Qvl3RK4uBJh0Y/I1H0k0nZMJbyYwUYwbOcZmWWEmzDSM4ruIsC7yMB9
-        /sdWfJt0YE6w4V1bzzOdBI/DrN40BjFAIPRrPeRfwy1+I2RiBWHqHHjFMrgnsU86IFlmIJeP3Ix/
-        TORXSJrF/d9fRSm+XRYUd3ei57w374sBGpyfb31iISzZx0CCJhQB++g1XW4aPBoNnTbp2w23sQRn
-        YnLJbXfRqBuD4c6kIRoEb8XsPK7tndz5t8Hcak1olrfuEcL8+YeU1400bly863jDbDRmIwdtdZhO
-        3J7Ae3uUgdwirz83Mr5v3FPEiKfUGt7FbVG3VV63Tb2RzDMvdCL3iJb5qqL5FVuz87Isq31T12lL
-        36/jA1Hk+9/jK2rXtIf80BR8MeQIzAegLquP0Jpb8T3W1f5QXVfJp469PCp3tu8Ww4VnPZ/Y6Yh+
-        8fp2KsNy2pWHEqFUbcFH9HIavXtKfm//BB6fTnnxONfNg4f98DxDXfnpYcTFP0w55wdMx13tmrLZ
-        V3VxTRH/zLfLytAzA/tRyGur5PXTfzbtoR5fBAAA
+        H4sIAAAAAAAA/11TwY6bMBC99yssS71BBCEBk0u1x5562EMP3QoN9gTcGJvYJrt0lX/vOE22Ui9I
+        jOc9vzdv/M614gcuR4hymk0ujrLqm7rKt2W5zXclyFzUlciFFH2NLeKxBp5x1/9CGe/AjXQExaid
+        pSPpESISadk0u6Jo21JkfHIKDbUbAxPk1abKm6LPL+gDRG0wwUanJQZ++PHOtVX4xg8F4TAEGJAf
+        3rl31HfgEIIOEWxMGGcj2iTjhX+nEouOSTIyMrBuAqMxsCOEiJ4KioUZ6WuIkkU9IXOWKQhj78Cr
+        8IV9Wzyz+MqeJ/CRPRn0keBkZvHIlkBcT1/TDbBEIo9agjErUxhpEowkRdJ1LwY9WH2kH9I0YfRa
+        MuXdHO4y9AlDxjyqRWo7MG0vSNAB0gT/SutXVhefN+wZVjY4p/oVb1cnUWSJmhe8kU1gFzBsclZH
+        5xObo6mOCCq7nY9ojEvQyZELGthRK7QS6VK2OnKsIAI7E4eO6+aF82vGjRtm73rKwi7GZPyorQ5j
+        R7kGSvjAQ3Qzv/7M+PLI5rzggl1STqltip1oqqbaZ5xopjl20Z3QEt0urcKj9mhumqoSzb5NcT7W
+        6APxf/kOKkVbi2JflBmPLoL5d0PTfJTuvdu6Kcp2W1/veruejJyUe7UPf2GlFZk6sjmgn2mIaaOO
+        c6cAW9HvUfa0a2/d4N05mb09GI/nrihP0/40CxHwjFCE3Vr9lvuxKi7UHzC9gVpUVdnu2vaaKv5C
+        K07C0BMD2VFI8Sl+/fQHjZ4QfYYDAAA=
     headers:
       CF-RAY:
-      - 9df3a03b6c913a75-BOM
+      - 9df4bca199ccb330-BOM
       Cache-Control:
       - private, max-age=0, no-store, no-cache, must-revalidate
       Connection:
@@ -223,7 +223,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 20 Mar 2026 09:17:49 GMT
+      - Fri, 20 Mar 2026 12:31:58 GMT
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -234,10 +234,6 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
-      set-cookie:
-      - __cf_bm=jZ39MqHAMV5Y04rznS5K5Icm7ry2SEK6rBaik5_jezA-1773998268.7054625-1.0.1.1-P3EtgtLfwzSpkWBQ_8jMtBSmxEvZrCsP7HY05SytLzWw6AMPquykhbsJEFH2e2VhTk5B4Bo7m0sd.SI3J6xFtPaRzjAi69cIsV.2PLY.qgbccjbZpTiHRVUOyLKlU4Ve;
-        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 09:47:49
-        GMT
       vary:
       - Origin
       via:
@@ -249,15 +245,149 @@ interactions:
       x-ratelimit-limit-tokens:
       - '12000'
       x-ratelimit-remaining-requests:
-      - '942'
+      - '998'
       x-ratelimit-remaining-tokens:
-      - '11012'
+      - '10955'
       x-ratelimit-reset-requests:
-      - 1h23m31.2s
+      - 2m52.8s
       x-ratelimit-reset-tokens:
-      - 4.939s
+      - 5.225s
       x-request-id:
-      - req_01km58jra6fvma54rhjgeprjh0
+      - req_01km5kp88seqea0s4y3zc5h30v
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate a Support Snippet (a set of internal talking points for customer support
+      agents).\nUse the following context:\n=== PRODUCT CHANGE EVENT ===\nTitle: Smart
+      Alerts: AI-powered anomaly detection\nDescription: Automatically surfaces statistically
+      significant metric drops and spikes to analysts, cutting manual investigation
+      time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch Decision Reasons: [\"High customer
+      impact \\u2014 affects all dashboard users\", \"Addresses #1 support ticket
+      theme: missed anomalies\"]\n\n=== BRAND PROFILE ===\nProduct Summary: Acme Analytics
+      is a B2B SaaS platform helping data teams monitor business KPIs in real time.\nTone
+      Rules: {\"voice\": \"confident but approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed
+      Claims: [\"60% reduction in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED
+      Claims (NEVER USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n===
+      TARGET AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\nReturn the result directly as plain text.
+      Focus on technical caveats, known safe-guards, and user outcome positioning.\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2093'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=73OfGEuQowIAYNSdbiBJA2encgO3F.WCn2Qu4vyA3Fw-1774009915.8993115-1.0.1.1-.GYZV49HNCATBAI_rTNZrIj2yQv5gd43mW3lU9f1mEqRZyRyF..d9lt3kHQSKGluQ7FjWWthuXNpQ3n6ApnFsrELUrJ57F6IJ5C1wGKjB28ytvMiMDmf0IzAxQdI2QJ3
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      CF-RAY:
+      - 9df4bca4994a3b6d-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 Mar 2026 12:31:59 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '997'
+      x-ratelimit-remaining-tokens:
+      - '10569'
+      x-ratelimit-reset-requests:
+      - 4m19.2s
+      x-ratelimit-reset-tokens:
+      - 7.154s
+      x-request-id:
+      - req_01km5kp8r2ep7rp969xbeegr50
     status:
       code: 200
       message: OK
@@ -300,7 +430,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - __cf_bm=jZ39MqHAMV5Y04rznS5K5Icm7ry2SEK6rBaik5_jezA-1773998268.7054625-1.0.1.1-P3EtgtLfwzSpkWBQ_8jMtBSmxEvZrCsP7HY05SytLzWw6AMPquykhbsJEFH2e2VhTk5B4Bo7m0sd.SI3J6xFtPaRzjAi69cIsV.2PLY.qgbccjbZpTiHRVUOyLKlU4Ve
+      - __cf_bm=73OfGEuQowIAYNSdbiBJA2encgO3F.WCn2Qu4vyA3Fw-1774009915.8993115-1.0.1.1-.GYZV49HNCATBAI_rTNZrIj2yQv5gd43mW3lU9f1mEqRZyRyF..d9lt3kHQSKGluQ7FjWWthuXNpQ3n6ApnFsrELUrJ57F6IJ5C1wGKjB28ytvMiMDmf0IzAxQdI2QJ3
       Host:
       - api.groq.com
       User-Agent:
@@ -326,25 +456,27 @@ interactions:
   response:
     body:
       string: !!binary |
-        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
+        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
+        emrBfKjV229/AzsWwCWrBgAA
     headers:
       CF-RAY:
-      - 9df3a0404f7dd109-BOM
+      - 9df4bcb01ad66eda-BOM
       Cache-Control:
       - private, max-age=0, no-store, no-cache, must-revalidate
       Connection:
@@ -354,7 +486,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 20 Mar 2026 09:17:50 GMT
+      - Fri, 20 Mar 2026 12:32:00 GMT
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -365,10 +497,6 @@ interactions:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
-      set-cookie:
-      - __cf_bm=ZW4LFjWfa.EpckC28V6RPID0vEgqPsBpnJyi_PQz5Ng-1773998269.4810898-1.0.1.1-2blb60TzYR2WQPEoFPiqAvIZYGe1FwiRwTgNsS.m_7huLRrjC5kftnYxfDp12a0PPIKN2RGgriEGIusR4m5KFo2exoMeqK2MRZebRxYUl7079sTIdOM3b11N7qfw7ZaL;
-        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 09:47:50
-        GMT
       vary:
       - Origin
       via:
@@ -380,15 +508,15 @@ interactions:
       x-ratelimit-limit-tokens:
       - '12000'
       x-ratelimit-remaining-requests:
-      - '941'
+      - '996'
       x-ratelimit-remaining-tokens:
-      - '10584'
+      - '10042'
       x-ratelimit-reset-requests:
-      - 1h24m57.599s
+      - 5m45.6s
       x-ratelimit-reset-tokens:
-      - 7.08s
+      - 9.79s
       x-request-id:
-      - req_01km58js26f31vw1a2agfhmdrn
+      - req_01km5kpahhesh85mg916wd3f6a
     status:
       code: 200
       message: OK
@@ -431,7 +559,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - __cf_bm=ZW4LFjWfa.EpckC28V6RPID0vEgqPsBpnJyi_PQz5Ng-1773998269.4810898-1.0.1.1-2blb60TzYR2WQPEoFPiqAvIZYGe1FwiRwTgNsS.m_7huLRrjC5kftnYxfDp12a0PPIKN2RGgriEGIusR4m5KFo2exoMeqK2MRZebRxYUl7079sTIdOM3b11N7qfw7ZaL
+      - __cf_bm=73OfGEuQowIAYNSdbiBJA2encgO3F.WCn2Qu4vyA3Fw-1774009915.8993115-1.0.1.1-.GYZV49HNCATBAI_rTNZrIj2yQv5gd43mW3lU9f1mEqRZyRyF..d9lt3kHQSKGluQ7FjWWthuXNpQ3n6ApnFsrELUrJ57F6IJ5C1wGKjB28ytvMiMDmf0IzAxQdI2QJ3
       Host:
       - api.groq.com
       User-Agent:
@@ -457,25 +585,25 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAA/51UTW/jNhC991dMCRR7kQTJX5J8KdKecmkP2WIPdeFQ4kiiTZEKSdkRAv/3DmUn
-        dYDFHnqxoeHMm3lvPt6YFGzL6o77uh9UnG7qRdnkZVykSxGvmqyJS5HxmG+KRVXWZZpWaxYxUx2w
-        9rfApDYUil4aTU+1Re6RQLM8X5ZlsciziPVGoCJ3pXjP42WyjPO0ik9oHfdSYQjrjKzRse3fb0xq
-        ga9sm1IcOsdbZNs3Zg35bRl3TjrPtQ8xRnvUoYzn5+eDM3qn33YaYMdO3Ery2fMd29Lno/bWiLGW
-        uoWnnlsPDwqtd1t4eIwHc0aLArg2PVcTCPTEjcgk8DB6snlZc0UPUlAy2UxA+T0VcTM72WrZ0If2
-        0KO3sgZhzeAIUIAb5BFdBPXofcgu9QkpsuUhAXjZI1QTbNJfEnjiE7TGiGpC8AZ4qBAacmxHnLE6
-        VMqEp95YBGwop8SQ1GjpjSX4ZMeizwJUVwEeKKDhyiGxddLLE17xr0X2XI9c3eGA58fwxymbUkCV
-        Tma04JH3XxwMs5YEIv30K3wjZEQVPBL4SuNAHudugjN+oSyKj7ruSN172SMIaD+SniC5Hy0m8NsE
-        /FMX3GgbPnfyf7ThvoqgJz0L7vnMzIEip5mpg5r2oQMaZXUrTqIjBZ1HewNE+lU0ntcmUsmCu64y
-        3AqXwDfpO1KP+koYs1jkIPV32h+FhJROA01zM48YkZmDAmocyEE1Wnq4UkF9MBMMyMN7Az0tC5xD
-        uqc/f4cFfJ0GhMdHqIkiyUHiOqxHS61K4I/b6HweLWMJU8xUupl7QL1NxFVHiyeJ5wT+GlrLxVWi
-        +2lpOSlwreFeX28En37esZ2+7DRtKLtETJmWxqeiPdejUhFrpJau25PQtL60yM6bgV3+idj4vvcv
-        I464D1LRRUiyTbZZFNmSbgrh9IPfe3Mkadh2lef/2W7eabnMijIvynAr3m/UR0SWrz/bb1GbdZmV
-        eb4uIuaN5+ojYLNefJhuvvl6sSzy9Sq/3EreV8TlKMxZv1N0E01NvyemLdqBBAsHqxn2q3VWpKJZ
-        pSWdstd9a81L4DvfY4sv+zQ79uvi4PNzc3o5HavqkHaln16LgfwdhhO7ypfZJl8Vm0uw2BNdUKoM
-        LSEQH4HURsEuP/0LzBsvtOUFAAA=
+        H4sIAAAAAAAA/31UTW/jNhC991cMCBR7sQ35Q/66FOn2ktMessAe6oVDiSOJNkUqJBVHCPzf+6g4
+        waZAe5PIeTPvvRnOq9BK7EXZyFi2nZmqrFjk6zyf8nKzmq62hZzKcpVP80pVRbXdLTZSiYlwxYnL
+        eAPOSgcoR+0srkrPMjKSzjebVZbtdov5RLROsUG4MbKV0+VsOd1kxfSZfZBRG06wxumSg9j//Sq0
+        Vfwi9hlwHIKsWexfhXeI2wsZgg5R2pgwzka2icbj4+MpOHuwrwdLdBDP0mvEHOVB7PF7b6N3qi+1
+        remhlT7SnWEfw57u7qedu7BnRdK6VpqBFEdog5gZfe0jtdL20pC2zxyirmW6oahbpmKgdfY7cIoq
+        V/aBcHGBH4DECGkzepAD1c6pYmCKjmQqShVS1D2PuIaNcekKUiqtIIaUjBLVgq6bGGYHMfmsqHhT
+        dOeZBteDSKLuKgq6iklebLzr6wYJexsN7HurGiZgB3EoVelEWJrA1Lmgo4awP+gvN+a76NCMH41U
+        1DpUGaUm2LtE9NfczNIJ+YMhQ3qVYDP6DgO+BPgw0IW/AM8vpcY8pBT61gb+1AQw6z1ZvvxvM6jC
+        WPWeZ/TnQLKPuI66lAYxofeVHHuLwYiYjvdzXVtd4Qeuthy9Lkl514XR+dDpM6P2r0xSO3Cd5Jd4
+        D82bVB1CzwGOBTR1xIIgRIT/nokZfYOkh29faUHfh47p/p5KVAAbaOuMjJXzLbEFdeSJDVPgsvc6
+        DrcCRstCm/Sf2FhmNaMfOjb/cm4clsiyDWBsqUhvD8lk0t6ksUiZuJrQ2brL23jwkLqS+LouReBE
+        +5s/6BtqOEx9ylL0HhOZYm5voHVWR+eRB332A+lIKXa0k3nEKF1VaKBFjyExkfeBTYU5PtjrweKd
+        iutEGFd33hV47bY3ZiIwkpi7I9jjEeM5B3AT158T0b+//qeeez4mi7EXZtlqu80XWEYTgTxtF4/R
+        neGm2K82v5x9RGOhzTfZMm2M9031gZhvt5/Pb6h8l203q+Uc2yu6KM0HYL3OP45usWssy8U6m6+u
+        N8rH1Imzchf7LjEMGJ/2CKU1+w4eprVVdUclebctci4LLLSXY+3dU9I7bmXPT8dsfm7zc1eoE3e1
+        PBWXy2moS1/yGvFwfVy0u12+XS+X62s68s9YpKDGHikgSDHap8T1t38AZu2SnewFAAA=
     headers:
       CF-RAY:
-      - 9df3a0454f3a3c22-BOM
+      - 9df4bcb5a8e0855b-BOM
       Cache-Control:
       - private, max-age=0, no-store, no-cache, must-revalidate
       Connection:
@@ -485,7 +613,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 20 Mar 2026 09:17:51 GMT
+      - Fri, 20 Mar 2026 12:32:01 GMT
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -497,8 +625,8 @@ interactions:
       cf-cache-status:
       - DYNAMIC
       set-cookie:
-      - __cf_bm=XfcZQqHhItMEO1KuEGoYfmJt81pCzENRpEHX17TavMU-1773998270.2837884-1.0.1.1-I9vnL70.iolDIEUXVPVvKy.KNzvVvUo1iX4YvD35MGZB3JafzR4IF1l.wBOHcx2HpWB1mkUUJDAdxVZEmgrWDqhwNB9AuiwRBthSpbYtjTgnl1f_o50F3U_oEuXkLqPz;
-        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 09:47:51
+      - __cf_bm=gabLXuIiwK.VoYvFDfr5VVYq8CUchb8cCmrgUd6GA1E-1774009920.9104962-1.0.1.1-lNbpPc15qykb7j.zGGfwIma63Fk8JSXUFwhy2_W3XQjigYt1zfpQhRnroZKusMacfa2o961fejm7X3EYo3OpMx8.UoexRTMl62636OPx4NiuXD9f24n__GAWiTShFbr0;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 13:02:01
         GMT
       vary:
       - Origin
@@ -511,15 +639,148 @@ interactions:
       x-ratelimit-limit-tokens:
       - '12000'
       x-ratelimit-remaining-requests:
-      - '940'
+      - '995'
       x-ratelimit-remaining-tokens:
-      - '10163'
+      - '9524'
       x-ratelimit-reset-requests:
-      - 1h26m24s
+      - 7m12s
       x-ratelimit-reset-tokens:
-      - 9.184s
+      - 12.38s
       x-request-id:
-      - req_01km58jt7wfvqvkbbj0h9tyx8p
+      - req_01km5kpbdjepgajbwwjygcrce6
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate content for a CHANGELOG.\nUse the following context constraints:\n===
+      PRODUCT CHANGE EVENT ===\nTitle: Smart Alerts: AI-powered anomaly detection\nDescription:
+      Automatically surfaces statistically significant metric drops and spikes to
+      analysts, cutting manual investigation time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch
+      Decision Reasons: [\"High customer impact \\u2014 affects all dashboard users\",
+      \"Addresses #1 support ticket theme: missed anomalies\"]\n\n=== BRAND PROFILE
+      ===\nProduct Summary: Acme Analytics is a B2B SaaS platform helping data teams
+      monitor business KPIs in real time.\nTone Rules: {\"voice\": \"confident but
+      approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60% reduction
+      in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED Claims (NEVER
+      USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n=== TARGET
+      AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\nCRITICAL: You must generate EXACTLY TWO
+      variants and return them in valid JSON format.\nVariant A: \"Short and Direct\"
+      (Punchy, get straight to the point)\nVariant B: \"Detailed and Narrative\" (Story-driven,
+      explanatory, slightly longer)\n\nOutput Format (JSON only):\n{\n  \"variant_a\":
+      \"Text for variant A...\",\n  \"variant_b\": \"Text for variant B...\"\n}\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2294'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=gabLXuIiwK.VoYvFDfr5VVYq8CUchb8cCmrgUd6GA1E-1774009920.9104962-1.0.1.1-lNbpPc15qykb7j.zGGfwIma63Fk8JSXUFwhy2_W3XQjigYt1zfpQhRnroZKusMacfa2o961fejm7X3EYo3OpMx8.UoexRTMl62636OPx4NiuXD9f24n__GAWiTShFbr0
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/5VVTW/jNhC991cMCBS5WIYkfyj2LW0vQQ9bYBfYQ71wKGlksaFIhaQcG4H/ex8t
+        Oxu3xQK9BPGQM/PevMfRm1C1WIuqlaHqep0s5vmMZZkmsyzPk3l1v0hWi0omy7RoyrlMi2XOYiJs
+        +RdX4ZI4rSxSOShrcFQ5loFRNCuKeZquVnk+EZ2tWeO61rKTyWw6S4q0TPbsvAxKx4pVa1XFXqz/
+        fBPK1HwQ6xR57L3csVi/CWdxby2k98oHaULMsSawiTCenp425m1jiDZiL53C+VZuxBo/H01wth4q
+        ZXb0uZMu0INmF/yaHh6T3r6y45qksZ3UR6o5gBeITOlhCIgFVUmNA1WjkWqOhN4BAC5hr3ZGNfhh
+        AnUcnKqodrb3KFiT79Uz+wmhwdi+k2aQmpTZMyrsZGxEQXVM5ZGW6c9T+tIqTw0GODgmWdcO/NkT
+        Btzhai8V/lhlAqr6oWpJolNkQw2K7QY+922k9ox7XgW1jwCCpZZ1T0c7UAWhW0ACjpG0Qv1G+sBu
+        uhGT2xGW4wi/8h3g8KFSEDZWk8bYwVRMoWXSEv+2ZJub8U7IDu6HI77ynNJvHOc4lj4DrWWQFFh2
+        njRmGIE7TxiBCtZROXhlMBj6/Y/HGI3YGoigIJE+Tm5gkLyR0Q+ukbDZ/5dxSr8cSTMsK3ejllUL
+        FAhJZxCY0Cvf7RnxmkmFOH6vSs2RUzWEH2sv+97ZgwJO1h+d0LE0PrK/0xo4GGh0JH7OQ34tfVta
+        6eoR6XkU17NW7dpEdb2sAg4xebybKX2CKDfzuZrtFVaqQU/bHkLAZ7Beb40fCYz+w2PXms0uekqZ
+        Sg91nESwNrI7jr5Lrr4bjTkCizYpB4c3FG1yGcVFTpSY0lcV2n/YZzQrmlrTnF/fx1f4n/798NL+
+        /SisSaLWFxiYxEOERp8//Uo5fTn2TI+PVCELPsAAei1DY133HUdwgw9gIsPZjqNHoZHn6vxY0cOx
+        VhKa4yFtzGljsJXEaSK03UHeErvNDFpPRKOM8u0WHDw25lr4YHtx+jYRw3XXvQw88DYqiS04zZbp
+        KpvlRTERqNP1YRvsMziI9bxYfo9dbqez+3yxyuazuB+ve/k9I8+K2/glq8iLbJFhXU9EsEHq94Tl
+        avYeut5dLuZZmi3y0wXytgSX59q+mitFf4Qg3RZMd+x6aByXdNNv54vsPq2bebrC+j5sd86+RL7n
+        b5Djl22aPXeL574qOn55kenxwN7Mj4dlmeO+5/hZWaxmy9kszxanGHF7fDWAjB0qgE/NcFctTj/9
+        DRqH7h7ZBgAA
+    headers:
+      CF-RAY:
+      - 9df4bcbaef011326-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 Mar 2026 12:32:02 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=Aik4j0If8q4Tpa4B.Qk63kjslIWOaaBoOCMssjDMKMw-1774009921.7452683-1.0.1.1-sK.uw6xyc4aDxQuiyjcZTegdaxscxI_xW6DdgZ9QXtywUke09tDZgHPTTxraHSuPeeMs8ikWD6mcN7fkHD5_x87G_kb9a84.Zxx0sOnf0BpujUHXbQaeqYyzaWRJi0QT;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 20 Mar 2026 13:02:02
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '994'
+      x-ratelimit-remaining-tokens:
+      - '9026'
+      x-ratelimit-reset-requests:
+      - 8m38.4s
+      x-ratelimit-reset-tokens:
+      - 14.87s
+      x-request-id:
+      - req_01km5kpc7meqqa0yxesn4yx6b2
     status:
       code: 200
       message: OK

@@ -20,6 +20,20 @@ Use the following context:
 Return the result directly as plain text. Keep it punchy and outcome-focused.
 """
 
+SUPPORT_SNIPPET_TEMPLATE = """Please generate a Support Snippet (a set of internal talking points for customer support agents).
+Use the following context:
+{context}
+
+Return the result directly as plain text. Focus on technical caveats, known safe-guards, and user outcome positioning.
+"""
+
+CHANGELOG_TEMPLATE = """Please generate a Changelog entry (external release notes for end-users).
+Use the following context:
+{context}
+
+Format as a concise markdown bulleted list. Focus on user value and readability.
+"""
+
 EXTERNAL_ASSET_TEMPLATE = """Please generate content for a {asset_type}.
 Use the following context constraints:
 {context}
@@ -34,6 +48,16 @@ Output Format (JSON only):
   "variant_b": "Text for variant B..."
 }}
 """
+
+support_snippet_prompt = ChatPromptTemplate.from_messages([
+    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+    HumanMessagePromptTemplate.from_template(SUPPORT_SNIPPET_TEMPLATE)
+])
+
+changelog_prompt = ChatPromptTemplate.from_messages([
+    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+    HumanMessagePromptTemplate.from_template(CHANGELOG_TEMPLATE)
+])
 
 internal_brief_prompt = ChatPromptTemplate.from_messages([
     SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),

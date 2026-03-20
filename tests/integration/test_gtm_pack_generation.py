@@ -97,16 +97,24 @@ def audiences():
 # DB mock
 # ---------------------------------------------------------------------------
 
-def make_mock_db(candidate, brand_profile, audiences):
+def make_mock_db(candidate, brand_profile, audiences, approved_assets=None, approved_candidates=None):
     """
     Wire a mock Session:
-      - scalar() returns LaunchCandidate then BrandProfile (call order matches pack_generator)
-      - scalars().all() returns the audience list
-      - flush() assigns a UUID to any GtmPack that was just added (simulates INSERT default)
+      - scalar() returns LaunchCandidate then BrandProfile
+      - scalars().all() returns:
+          1. audiences
+          2. approved_assets (history)
+          3. approved_candidates (history)
     """
     db = MagicMock(spec=Session)
     db.scalar.side_effect = [candidate, brand_profile]
-    db.scalars.return_value.all.return_value = audiences
+    
+    # scalars().all() returns a list of items for each call in sequence
+    db.scalars.return_value.all.side_effect = [
+        audiences,
+        approved_assets or [],
+        approved_candidates or []
+    ]
 
     added: list = []
 
@@ -114,7 +122,7 @@ def make_mock_db(candidate, brand_profile, audiences):
         added.append(obj)
 
     def on_flush():
-        # Give the GtmPack its primary key (normally set by the DB on INSERT)
+        # Give the GtmPack its primary key
         for obj in added:
             if isinstance(obj, GtmPack) and obj.id is None:
                 obj.id = uuid.uuid4()
@@ -147,18 +155,20 @@ class TestGenerateGtmPack:
     def test_db_commit_called_once(self):
         self.db.commit.assert_called_once()
 
-    def test_five_objects_added_to_db(self):
-        """1 GtmPack + 4 GtmAssets (brief, snippet, email, linkedin)."""
-        assert self.db.add.call_count == 5
+    def test_seven_objects_added_to_db(self):
+        """1 GtmPack + 6 GtmAssets (brief, snippet, support, email, linkedin, changelog)."""
+        assert self.db.add.call_count == 7
 
-    def test_all_four_asset_types_generated(self):
+    def test_all_six_asset_types_generated(self):
         assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset)]
         asset_types = {a.asset_type for a in assets}
         assert asset_types == {
             AssetType.INTERNAL_BRIEF,
             AssetType.SALES_SNIPPET,
+            AssetType.SUPPORT_SNIPPET,
             AssetType.EMAIL,
             AssetType.LINKEDIN,
+            AssetType.CHANGELOG,
         }
 
     def test_all_assets_have_non_empty_content(self):

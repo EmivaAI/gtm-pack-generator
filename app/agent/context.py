@@ -6,7 +6,9 @@ def build_candidate_context(
     candidate: LaunchCandidate,
     change_event: ChangeEvent,
     brand_profile: BrandProfile,
-    audience_segments: Optional[List[AudienceSegment]] = None
+    audience_segments: Optional[List[AudienceSegment]] = None,
+    approved_pillars: Optional[List[str]] = None,
+    launch_history: Optional[List[str]] = None
 ) -> str:
     """
     Takes structured candidate data and related brand/change records from the database
@@ -50,5 +52,17 @@ def build_candidate_context(
             if seg.objections:
                 context_lines.append(f"  - Typical Objections: {json.dumps(seg.objections)}")
             context_lines.append("")
+
+    # 4. Approved Messaging Pillars (Historical context)
+    if approved_pillars:
+        context_lines.append("\n=== PREVIOUS APPROVED MESSAGING PILLARS ===")
+        for pillar in approved_pillars:
+            context_lines.append(f"- {pillar}")
+
+    # 5. Relevant Launch History
+    if launch_history:
+        context_lines.append("\n=== RELEVANT LAUNCH HISTORY ===")
+        for entry in launch_history:
+            context_lines.append(f"- {entry}")
 
     return "\n".join(context_lines)
