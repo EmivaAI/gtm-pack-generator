@@ -21,6 +21,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
+    "vcrpy>=7.0.0",
 ]
 
 [tool.pytest.ini_options]
