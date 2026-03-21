@@ -26,3 +26,7 @@ jobs:
 
       - name: Run tests
         run: uv run pytest tests/ -v
+        env:
+          LLM_PROVIDER: "groq"
+          LLM_MODEL_NAME: "llama-3.3-70b-versatile"
+          GROQ_API_KEY: "dummy-key-for-tests"
