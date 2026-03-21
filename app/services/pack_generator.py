@@ -125,24 +125,28 @@ def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str)
     except Exception as e:
         logger.error(f"Failed to generate Support Snippet: {e}")
 
+import json
+from langchain_core.output_parsers import JsonOutputParser
+
 def _generate_external_assets(db: Session, pack_id: uuid.UUID, context_str: str):
     """Generates external assets containing the dual JSON variants (RL-lite)"""
     external_types = [AssetType.EMAIL, AssetType.LINKEDIN, AssetType.CHANGELOG]
-    external_chain = external_asset_prompt | get_llm_instance()
+    external_chain = external_asset_prompt | get_llm_instance() | JsonOutputParser()
     
     for ext_type in external_types:
         try:
-            res = external_chain.invoke({
+            res_dict = external_chain.invoke({
                 "context": context_str,
                 "asset_type": ext_type.value
             })
             
-            # The prompt strict JSON formatter should return a JSON string block
-            # like {"variant_a": "...", "variant_b": "..."}.
+            # The JsonOutputParser returns a dict, so we convert it back to string
+            content = json.dumps(res_dict, indent=2)
+            
             db.add(GtmAsset(
                 gtm_pack_id=pack_id,
                 asset_type=ext_type,
-                content_draft=res.content,
+                content_draft=content,
                 status=AssetStatus.DRAFT
             ))
         except Exception as e:

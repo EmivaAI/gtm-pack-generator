@@ -177,6 +177,23 @@ class TestGenerateGtmPack:
         for asset in assets:
             assert asset.content_draft, f"{asset.asset_type} has empty content_draft"
 
+    def test_external_assets_are_valid_json_without_fences(self):
+        import json
+        external_types = {AssetType.EMAIL, AssetType.LINKEDIN, AssetType.CHANGELOG}
+        assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset) and obj.asset_type in external_types]
+        
+        for asset in assets:
+            content = asset.content_draft
+            assert not content.startswith("```"), f"{asset.asset_type.value} starts with markdown fence"
+            assert not content.endswith("```"), f"{asset.asset_type.value} ends with markdown fence"
+            
+            try:
+                parsed = json.loads(content)
+                assert "variant_a" in parsed
+                assert "variant_b" in parsed
+            except json.JSONDecodeError:
+                pytest.fail(f"{asset.asset_type.value} content is not valid JSON:\\n{content}")
+
     def test_all_assets_are_in_draft_status(self):
         assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset)]
         for asset in assets:
