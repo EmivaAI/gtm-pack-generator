@@ -27,6 +27,6 @@ jobs:
       - name: Run tests
         run: uv run pytest tests/ -v
         env:
-          LLM_PROVIDER: "openai"
-          LLM_MODEL_NAME: "gpt-4o"
-          OPENAI_API_KEY: "dummy-key-for-tests"
+          LLM_PROVIDER: "groq"
+          LLM_MODEL_NAME: "llama-3.3-70b-versatile"
+          GROQ_API_KEY: "dummy-key-for-tests"
