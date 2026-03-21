@@ -20,12 +20,12 @@ class Settings(BaseSettings):
     def database_url(self) -> str:
         return f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
     
-    llm_provider: str = ""
-    llm_model_name: str = ""
+    llm_provider: str
+    llm_model_name: str
     
-    openai_api_key: str = ""
-    anthropic_api_key: str = ""
-    groq_api_key: str = ""
+    openai_api_key: str | None = None
+    anthropic_api_key: str | None = None
+    groq_api_key: str | None = None
 
     default_openai_model: str = "gpt-4o"
     default_anthropic_model: str = "claude-3-5-sonnet-20241022" # TODO: Verify this model name exists
