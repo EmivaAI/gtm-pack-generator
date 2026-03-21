@@ -28,4 +28,5 @@ jobs:
         run: uv run pytest tests/ -v
         env:
           LLM_PROVIDER: "openai"
+          LLM_MODEL_NAME: "gpt-4o"
           OPENAI_API_KEY: "dummy-key-for-tests"
