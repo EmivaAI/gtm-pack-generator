@@ -26,3 +26,6 @@ jobs:
 
       - name: Run tests
         run: uv run pytest tests/ -v
+        env:
+          LLM_PROVIDER: "openai"
+          OPENAI_API_KEY: "dummy-key-for-tests"
