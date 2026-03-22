@@ -1,8 +1,8 @@
-import logging
 import uuid
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
+from app.core.logger import setup_logger
 from app.db.schema import (
     LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment,
     GtmPack, GtmAsset, AssetType, PackStatus, AssetStatus, LaunchStatus
@@ -14,7 +14,7 @@ from app.agent.prompts import (
 )
 from app.agent.llm import get_llm_instance
 
-logger = logging.getLogger(__name__)
+logger = setup_logger(__name__)
 
 def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     """

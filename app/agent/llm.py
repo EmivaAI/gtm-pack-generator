@@ -1,10 +1,10 @@
-import logging
 from functools import lru_cache
 from langchain.chat_models import init_chat_model
 from app.core.settings import settings
 from app.core.llm_providers import Provider
+from app.core.logger import setup_logger
 
-logger = logging.getLogger(__name__)
+logger = setup_logger(__name__)
 
 def _build_llm(provider: Provider):
     """
