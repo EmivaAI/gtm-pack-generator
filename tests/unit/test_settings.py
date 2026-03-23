@@ -6,6 +6,7 @@ Covers:
 - Invalid/unsupported provider names
 - Missing API key for the active provider
 """
+
 import pytest
 from pydantic import ValidationError
 
@@ -23,6 +24,7 @@ def clear_api_key_env_vars(monkeypatch):
 def make_settings(**overrides):
     """Construct a Settings instance without reading .env."""
     from app.core.settings import Settings
+
     return Settings(
         llm_model_name="some-model",
         **overrides,
@@ -33,6 +35,7 @@ def make_settings(**overrides):
 # ---------------------------------------------------------------------------
 # Happy-path: valid provider + matching key present
 # ---------------------------------------------------------------------------
+
 
 class TestValidProviderWithKey:
     def test_openai_with_key(self):
@@ -53,6 +56,7 @@ class TestValidProviderWithKey:
 # Failure: unsupported provider name
 # ---------------------------------------------------------------------------
 
+
 class TestInvalidProvider:
     @pytest.mark.parametrize("bad_provider", ["gpt4", "gemini", "OPENAI"])
     def test_unsupported_provider_raises(self, bad_provider):
@@ -64,6 +68,7 @@ class TestInvalidProvider:
 # ---------------------------------------------------------------------------
 # Failure: valid provider but corresponding API key is missing/empty
 # ---------------------------------------------------------------------------
+
 
 class TestMissingApiKey:
     def test_openai_without_key(self):
@@ -86,7 +91,7 @@ class TestMissingApiKey:
         with pytest.raises(ValidationError) as exc_info:
             make_settings(
                 llm_provider="openai",
-                openai_api_key="",       # active provider key — empty
-                anthropic_api_key="ant", # irrelevant key — ignored
+                openai_api_key="",  # active provider key — empty
+                anthropic_api_key="ant",  # irrelevant key — ignored
             )
         assert "OPENAI_API_KEY" in str(exc_info.value)

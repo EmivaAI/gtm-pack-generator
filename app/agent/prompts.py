@@ -1,4 +1,8 @@
-from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+from langchain_core.prompts import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
 SYSTEM_PROMPT = """You are an expert Go-To-Market (GTM) strategist and copywriter.
 Your goal is to generate high-quality GTM assets based on the strict context constraints provided.
@@ -49,27 +53,37 @@ Output Format (JSON only):
 }}
 """
 
-support_snippet_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(SUPPORT_SNIPPET_TEMPLATE)
-])
+support_snippet_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(SUPPORT_SNIPPET_TEMPLATE),
+    ]
+)
 
-changelog_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(CHANGELOG_TEMPLATE)
-])
+changelog_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(CHANGELOG_TEMPLATE),
+    ]
+)
 
-internal_brief_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(INTERNAL_BRIEF_TEMPLATE)
-])
+internal_brief_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(INTERNAL_BRIEF_TEMPLATE),
+    ]
+)
 
-sales_snippet_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(SALES_SNIPPET_TEMPLATE)
-])
+sales_snippet_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(SALES_SNIPPET_TEMPLATE),
+    ]
+)
 
-external_asset_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(EXTERNAL_ASSET_TEMPLATE)
-])
+external_asset_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(EXTERNAL_ASSET_TEMPLATE),
+    ]
+)
