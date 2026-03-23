@@ -42,9 +42,17 @@ EXTERNAL_ASSET_TEMPLATE = """Please generate content for a {asset_type}.
 Use the following context constraints:
 {context}
 
+---
+USER PREFERENCE / LEARNING BIAS:
+{preference_hint}
+---
+
 CRITICAL: You must generate EXACTLY TWO variants and return them in valid JSON format.
 Variant A: "Short and Direct" (Punchy, get straight to the point)
 Variant B: "Detailed and Narrative" (Story-driven, explanatory, slightly longer)
+
+Instructions for Preference:
+While you must still provide both variants, you should ensure that the variant corresponding to the "USER PREFERENCE" above is exceptionally strong and tailored.
 
 Output Format (JSON only):
 {{

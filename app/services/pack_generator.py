@@ -25,6 +25,8 @@ from app.agent.prompts import (
 from app.agent.llm import get_llm_instance
 from langchain_core.output_parsers import JsonOutputParser
 
+from app.services.learning import get_workspace_preferences
+
 logger = setup_logger(__name__)
 
 
@@ -101,8 +103,8 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     # 4. Generate Internal Assets
     _generate_internal_assets(db, pack.id, context_str)
 
-    # 5. Generate External Assets (Dual Variants)
-    _generate_external_assets(db, pack.id, context_str)
+    # 5. Generate External Assets (Dual Variants with RL-lite preference)
+    _generate_external_assets(db, workspace_id, pack.id, context_str)
 
     db.commit()
     logger.info(
@@ -159,17 +161,25 @@ def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str)
         logger.error(f"Failed to generate Support Snippet: {e}")
 
 
-
-
-def _generate_external_assets(db: Session, pack_id: uuid.UUID, context_str: str):
+def _generate_external_assets(
+    db: Session, workspace_id: uuid.UUID, pack_id: uuid.UUID, context_str: str
+):
     """Generates external assets containing the dual JSON variants (RL-lite)"""
     external_types = [AssetType.EMAIL, AssetType.LINKEDIN, AssetType.CHANGELOG]
     external_chain = external_asset_prompt | get_llm_instance() | JsonOutputParser()
 
     for ext_type in external_types:
         try:
+            # RL-lite: Get workspace preferences for this asset type
+            preference_hint = get_workspace_preferences(db, workspace_id, ext_type)
+            logger.info(f"RL-lite Preference Hint for {ext_type.value}: {preference_hint}")
+
             res_dict = external_chain.invoke(
-                {"context": context_str, "asset_type": ext_type.value}
+                {
+                    "context": context_str,
+                    "asset_type": ext_type.value,
+                    "preference_hint": preference_hint,
+                }
             )
 
             # The JsonOutputParser returns a dict, so we convert it back to string
