@@ -1,0 +1,35 @@
+{
+  "name": "Emiva GTM Context Skill",
+  "version": "1.0.0",
+  "description": "Exposes approved product and brand context for external GTM execution agents.",
+  "auth": {
+    "type": "bearer",
+    "description": "Workspace-scoped API key"
+  },
+  "endpoints": [
+    {
+      "path": "/v1/context/brand",
+      "method": "GET",
+      "description": "Fetch brand profile, positioning pillars, and tone rules."
+    },
+    {
+      "path": "/v1/context/bundle",
+      "method": "POST",
+      "description": "Fetch a task-scoped context bundle (e.g. for a LinkedIn post or email).",
+      "parameters": {
+        "task_type": "string",
+        "audience": "string",
+        "topic": "string",
+        "constraints": "object"
+      }
+    },
+    {
+      "path": "/v1/launch/{launch_id}/pack",
+      "method": "GET",
+      "description": "Fetch all final approved assets for a specific launch."
+    }
+  ],
+  "example_calls": {
+    "fetch_bundle": "curl -X POST '/v1/context/bundle' -d '{\"task_type\": \"linkedin_post\", \"topic\": \"New Release\"}'"
+  }
+}
