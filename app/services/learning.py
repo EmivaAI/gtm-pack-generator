@@ -1,8 +1,7 @@
 import uuid
 import json
 from sqlalchemy.orm import Session
-from sqlalchemy import select
-from app.db.schema import GtmAsset, AssetStatus, AssetType
+from app.db.schema import AssetType
 from app.core.logger import setup_logger
 
 logger = setup_logger(__name__)

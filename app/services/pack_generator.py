@@ -1,37 +1,21 @@
 import uuid
 import json
 from sqlalchemy.orm import Session
-from sqlalchemy import select
 
 from app.core.logger import setup_logger
 from app.db.schema import (
-    LaunchCandidate,
-    BrandProfile,
-    ChangeEvent,
-    AudienceSegment,
     GtmPack,
-    GtmAsset,
     AssetType,
-    PackStatus,
     AssetStatus,
-    LaunchStatus,
 )
-from app.agent.context import build_candidate_context
-from app.agent.prompts import (
-    internal_brief_prompt,
-    sales_snippet_prompt,
-    support_snippet_prompt,
-    external_asset_prompt,
-)
-from app.agent.llm import get_llm_instance
-from langchain_core.output_parsers import JsonOutputParser
+from app.agent import context, generators
+from app.db import crud
 
 from app.services.learning import get_workspace_preferences
 
 logger = setup_logger(__name__)
 
 
-from app.db import crud
 
 def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     """
@@ -66,7 +50,7 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     ]
 
     # 3. Context Assembly
-    context_str = build_candidate_context(
+    context_str = context.build_candidate_context(
         candidate,
         change_event,
         brand_profile,
@@ -100,13 +84,12 @@ def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str)
 
 def _generate_internal_brief(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
-        brief_chain = internal_brief_prompt | get_llm_instance()
-        res = brief_chain.invoke({"context": context_str})
+        content = generators.generate_internal_brief(context_str)
         crud.create_gtm_asset(
             db,
             pack_id=pack_id,
             asset_type=AssetType.INTERNAL_BRIEF,
-            content=res.content,
+            content=content,
             status=AssetStatus.DRAFT,
         )
     except Exception as e:
@@ -115,13 +98,12 @@ def _generate_internal_brief(db: Session, pack_id: uuid.UUID, context_str: str):
 
 def _generate_sales_snippet(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
-        snippet_chain = sales_snippet_prompt | get_llm_instance()
-        res = snippet_chain.invoke({"context": context_str})
+        content = generators.generate_sales_snippet(context_str)
         crud.create_gtm_asset(
             db,
             pack_id=pack_id,
             asset_type=AssetType.SALES_SNIPPET,
-            content=res.content,
+            content=content,
             status=AssetStatus.DRAFT,
         )
     except Exception as e:
@@ -130,13 +112,12 @@ def _generate_sales_snippet(db: Session, pack_id: uuid.UUID, context_str: str):
 
 def _generate_support_snippet(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
-        support_chain = support_snippet_prompt | get_llm_instance()
-        res = support_chain.invoke({"context": context_str})
+        content = generators.generate_support_snippet(context_str)
         crud.create_gtm_asset(
             db,
             pack_id=pack_id,
             asset_type=AssetType.SUPPORT_SNIPPET,
-            content=res.content,
+            content=content,
             status=AssetStatus.DRAFT,
         )
     except Exception as e:
@@ -152,9 +133,6 @@ def _generate_external_assets(
         AssetType.LINKEDIN,
         AssetType.CHANGELOG,
     ]
-    external_chain = (
-        external_asset_prompt | get_llm_instance() | JsonOutputParser()
-    )
 
     for ext_type in external_types:
         try:
@@ -164,12 +142,8 @@ def _generate_external_assets(
                 f"RL-lite Preference Hint for {ext_type.value}: {preference_hint}"
             )
 
-            res_dict = external_chain.invoke(
-                {
-                    "context": context_str,
-                    "asset_type": ext_type.value,
-                    "preference_hint": preference_hint,
-                }
+            res_dict = generators.generate_external_asset_variants(
+                context_str, ext_type, preference_hint
             )
 
             # The JsonOutputParser returns a dict, so we convert it back to string
