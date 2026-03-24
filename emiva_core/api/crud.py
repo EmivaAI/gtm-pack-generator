@@ -1,19 +1,19 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional, Dict, Any
+import uuid
+from datetime import datetime
+from pydantic import BaseModel
+
 from emiva_core.db.schema import (
     Workspace, BrandProfile, AudienceSegment, ChangeEvent, LaunchCandidate,
     GtmPack, GtmAsset, ApprovalEvent
 )
 from emiva_core.db.database import get_db
-from pydantic import BaseModel
-import uuid
-from datetime import datetime
-from typing import Optional, Dict, Any
 
 router = APIRouter(prefix="/api/v1")
 
-# Simple Pydantic models for seeding
+# Pydantic models for shared core entities
 class WorkspaceCreate(BaseModel):
     name: str
 
