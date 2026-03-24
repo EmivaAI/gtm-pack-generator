@@ -134,6 +134,9 @@ def make_mock_db(
         audiences,
         approved_assets or [],
         approved_candidates or [],
+        [], # for EMAIL preference hint
+        [], # for LINKEDIN preference hint
+        [], # for CHANGELOG preference hint
     ]
 
     added: list = []

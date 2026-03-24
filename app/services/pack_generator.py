@@ -7,6 +7,7 @@ from app.core.logger import setup_logger
 from app.db.schema import (
     LaunchCandidate,
     BrandProfile,
+    ChangeEvent,
     AudienceSegment,
     GtmPack,
     GtmAsset,
@@ -115,7 +116,6 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
 
 def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str):
     """Generates standard Internal Briefs and Sales Snippets"""
-    # TODO: Seperate each asset generation into a separate function
     # INTERNAL_BRIEF
     try:
         brief_chain = internal_brief_prompt | get_llm_instance()
@@ -166,14 +166,22 @@ def _generate_external_assets(
     db: Session, workspace_id: uuid.UUID, pack_id: uuid.UUID, context_str: str
 ):
     """Generates external assets containing the dual JSON variants (RL-lite)"""
-    external_types = [AssetType.EMAIL, AssetType.LINKEDIN, AssetType.CHANGELOG]
-    external_chain = external_asset_prompt | get_llm_instance() | JsonOutputParser()
+    external_types = [
+        AssetType.EMAIL,
+        AssetType.LINKEDIN,
+        AssetType.CHANGELOG,
+    ]
+    external_chain = (
+        external_asset_prompt | get_llm_instance() | JsonOutputParser()
+    )
 
     for ext_type in external_types:
         try:
             # RL-lite: Get workspace preferences for this asset type
             preference_hint = get_workspace_preferences(db, workspace_id, ext_type)
-            logger.info(f"RL-lite Preference Hint for {ext_type.value}: {preference_hint}")
+            logger.info(
+                f"RL-lite Preference Hint for {ext_type.value}: {preference_hint}"
+            )
 
             res_dict = external_chain.invoke(
                 {
