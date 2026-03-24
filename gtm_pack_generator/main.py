@@ -2,9 +2,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from app.core.settings import settings
-from app.core.logger import logger
-from app.api.routes import generate
+from gtm_pack_generator.core.settings import settings
+from gtm_pack_generator.core.logger import logger
+from gtm_pack_generator.api.routes import generate
 
 
 @asynccontextmanager

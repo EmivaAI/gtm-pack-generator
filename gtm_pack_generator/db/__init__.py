@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 
-from app.core.settings import settings
+from gtm_pack_generator.core.settings import settings
 
 engine = create_engine(
     settings.database_url,

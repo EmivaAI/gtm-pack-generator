@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from app.core.llm_providers import Provider
+from gtm_pack_generator.core.llm_providers import Provider
 
 
 class Settings(BaseSettings):

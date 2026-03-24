@@ -2,16 +2,16 @@ import uuid
 import json
 from sqlalchemy.orm import Session
 
-from app.core.logger import setup_logger
-from app.db.schema import (
+from gtm_pack_generator.core.logger import setup_logger
+from gtm_pack_generator.db.schema import (
     GtmPack,
     AssetType,
     AssetStatus,
 )
-from app.agent import context, generators
-from app.db import crud
+from gtm_pack_generator.agent import context, generators
+from gtm_pack_generator.db import crud
 
-from app.services.learning import get_workspace_preferences
+from gtm_pack_generator.services.learning import get_workspace_preferences
 
 logger = setup_logger(__name__)
 

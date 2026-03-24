@@ -1,6 +1,6 @@
 import json
 from typing import List, Optional
-from app.db.schema import LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment
+from gtm_pack_generator.db.schema import LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment
 
 
 def build_candidate_context(

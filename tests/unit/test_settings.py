@@ -23,7 +23,7 @@ def clear_api_key_env_vars(monkeypatch):
 # _env_file=None skips .env; only the kwargs passed here are used.
 def make_settings(**overrides):
     """Construct a Settings instance without reading .env."""
-    from app.core.settings import Settings
+    from gtm_pack_generator.core.settings import Settings
 
     return Settings(
         llm_model_name="some-model",

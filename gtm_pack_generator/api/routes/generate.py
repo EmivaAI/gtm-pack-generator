@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 import uuid
 from sqlalchemy.orm import Session
-from app.db import get_db
-from app.services.pack_generator import generate_gtm_pack
+from gtm_pack_generator.db import get_db
+from gtm_pack_generator.services.pack_generator import generate_gtm_pack
 
 router = APIRouter()
 

@@ -1,13 +1,13 @@
 from typing import Dict, Any
 from langchain_core.output_parsers import JsonOutputParser
-from app.agent.llm import get_llm_instance
-from app.agent.prompts import (
+from gtm_pack_generator.agent.llm import get_llm_instance
+from gtm_pack_generator.agent.prompts import (
     internal_brief_prompt,
     sales_snippet_prompt,
     support_snippet_prompt,
     external_asset_prompt,
 )
-from app.db.schema import AssetType
+from gtm_pack_generator.db.schema import AssetType
 
 def generate_internal_brief(context_str: str) -> str:
     """Generates an internal brief using the LLM."""
