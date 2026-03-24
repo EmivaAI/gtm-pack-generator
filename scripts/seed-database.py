@@ -8,8 +8,8 @@ import os
 
 # Ensure the app module can be found in the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-from gtm_pack_generator.core.settings import settings
-from gtm_pack_generator.db.schema import (
+from gtm_core.core.settings import settings
+from gtm_core.db.schema import (
     Base,
     Workspace,
     BrandProfile,

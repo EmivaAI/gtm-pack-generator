@@ -1,8 +1,8 @@
 from functools import lru_cache
 from langchain.chat_models import init_chat_model
-from gtm_pack_generator.core.settings import settings
-from gtm_pack_generator.core.llm_providers import Provider
-from gtm_pack_generator.core.logger import setup_logger
+from gtm_core.core.settings import settings
+from gtm_core.core.llm_providers import Provider
+from gtm_core.core.logger import setup_logger
 
 logger = setup_logger(__name__)
 

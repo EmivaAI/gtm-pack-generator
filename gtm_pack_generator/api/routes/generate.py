@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 import uuid
 from sqlalchemy.orm import Session
-from gtm_pack_generator.db import get_db
+from gtm_core.db import get_db
 from gtm_pack_generator.services.pack_generator import generate_gtm_pack
 
 router = APIRouter()

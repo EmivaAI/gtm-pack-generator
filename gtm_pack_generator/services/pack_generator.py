@@ -2,14 +2,14 @@ import uuid
 import json
 from sqlalchemy.orm import Session
 
-from gtm_pack_generator.core.logger import setup_logger
-from gtm_pack_generator.db.schema import (
+from gtm_core.core.logger import setup_logger
+from gtm_core.db.schema import (
     GtmPack,
     AssetType,
     AssetStatus,
 )
 from gtm_pack_generator.agent import context, generators
-from gtm_pack_generator.db import crud
+from gtm_core.db import crud
 
 from gtm_pack_generator.services.learning import get_workspace_preferences
 

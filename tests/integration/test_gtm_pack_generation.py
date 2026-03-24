@@ -8,7 +8,7 @@ import pytest
 from unittest.mock import MagicMock
 from sqlalchemy.orm import Session
 
-from gtm_pack_generator.db.schema import (
+from gtm_core.db.schema import (
     ChangeEvent,
     LaunchCandidate,
     BrandProfile,

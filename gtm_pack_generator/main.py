@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from gtm_pack_generator.core.settings import settings
-from gtm_pack_generator.core.logger import logger
+from gtm_core.core.settings import settings
+from gtm_core.core.logger import logger
 from gtm_pack_generator.api.routes import generate
 
 
