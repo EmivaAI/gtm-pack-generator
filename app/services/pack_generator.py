@@ -115,6 +115,7 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
 
 def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str):
     """Generates standard Internal Briefs and Sales Snippets"""
+    # TODO: Seperate each asset generation into a separate function
     # INTERNAL_BRIEF
     try:
         brief_chain = internal_brief_prompt | get_llm_instance()
