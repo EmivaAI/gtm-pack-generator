@@ -5,6 +5,7 @@ from emiva_core.db.schema import (
     Workspace, BrandProfile, AudienceSegment, ChangeEvent, LaunchCandidate,
     GtmPack, GtmAsset, ApprovalEvent
 )
+from emiva_core.db.database import get_db
 from pydantic import BaseModel
 import uuid
 from datetime import datetime

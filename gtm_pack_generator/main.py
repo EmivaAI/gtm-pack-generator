@@ -11,7 +11,9 @@ from gtm_pack_generator.api.routes import generate, crud
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up application resources...")
+    logger.debug("Setting up observability...")
     setup_observability()
+    logger.debug("Observability setup complete.")
     yield
     logger.info("Shutting down application resources...")
 
