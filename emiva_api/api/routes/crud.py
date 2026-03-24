@@ -11,7 +11,7 @@ from emiva_core.db.schema import (
 )
 from emiva_core.db.database import get_db
 
-router = APIRouter(prefix="/api/v1")
+router = APIRouter(prefix="/v1")
 
 # Pydantic models for shared core entities
 class WorkspaceCreate(BaseModel):

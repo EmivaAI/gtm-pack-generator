@@ -8,7 +8,7 @@ from emiva_core.core.logger import setup_logger
 logger = setup_logger(__name__)
 
 # API Base URL
-BASE_URL = "http://localhost:8000/api/v1"
+API_BASE_URL = "http://localhost:8001/api/v1"
 
 def load_narrative_json():
     json_path = os.path.join(os.path.dirname(__file__), "seed-narrative.json")

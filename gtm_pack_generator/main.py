@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from emiva_core.core.settings import settings
 from emiva_core.core.logger import logger
 from emiva_core.core.observability import setup_observability
-from emiva_core.api import crud_router
 from gtm_pack_generator.api.routes import generate
 
 
@@ -52,4 +51,3 @@ async def health_check():
 
 
 app.include_router(generate.router, prefix="/api/generate", tags=["Generate"])
-app.include_router(crud_router, tags=["CRUD"])
