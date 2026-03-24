@@ -47,3 +47,4 @@ async def health_check():
 
 
 app.include_router(generate.router, prefix="/api/generate", tags=["Generate"])
+app.include_router(crud.router, tags=["CRUD"])
