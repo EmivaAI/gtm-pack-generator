@@ -1,8 +1,8 @@
 from functools import lru_cache
 from langchain.chat_models import init_chat_model
-from app.core.settings import settings
-from app.core.llm_providers import Provider
-from app.core.logger import setup_logger
+from emiva_core.core.settings import settings
+from emiva_core.core.llm_providers import Provider
+from emiva_core.core.logger import setup_logger
 
 logger = setup_logger(__name__)
 

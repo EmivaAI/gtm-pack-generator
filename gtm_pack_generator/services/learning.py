@@ -1,9 +1,8 @@
 import uuid
 import json
 from sqlalchemy.orm import Session
-from sqlalchemy import select
-from app.db.schema import GtmAsset, AssetStatus, AssetType
-from app.core.logger import setup_logger
+from emiva_core.db.schema import AssetType
+from emiva_core.core.logger import setup_logger
 
 logger = setup_logger(__name__)
 
@@ -14,7 +13,7 @@ def get_workspace_preferences(db: Session, workspace_id: uuid.UUID, asset_type: 
     
     Returns a preference hint string for the LLM.
     """
-    from app.db import crud
+    from emiva_core.db import crud
     
     approved_assets = crud.get_approved_assets_for_learning(db, workspace_id, asset_type)
     

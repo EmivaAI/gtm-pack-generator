@@ -8,7 +8,7 @@ import pytest
 from unittest.mock import MagicMock
 from sqlalchemy.orm import Session
 
-from app.db.schema import (
+from emiva_core.db.schema import (
     ChangeEvent,
     LaunchCandidate,
     BrandProfile,
@@ -20,7 +20,7 @@ from app.db.schema import (
     AssetType,
     AssetStatus,
 )
-from app.services.pack_generator import generate_gtm_pack
+from gtm_pack_generator.services.pack_generator import generate_gtm_pack
 
 # Configure VCR to record LLM calls to a local cassette.
 # This prevents expensive repeated API calls.

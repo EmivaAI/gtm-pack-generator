@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from app.core.llm_providers import Provider
+from emiva_core.core.llm_providers import Provider
 
 
 class Settings(BaseSettings):
@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     version: str = "1.0.0"
     debug: bool = False
     environment: str = "development"
+    enable_phoenix: bool = True
 
     postgres_user: str = "emiva-user"
     postgres_password: str = ""
