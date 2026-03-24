@@ -7,7 +7,7 @@ from gtm_pack_generator.agent.prompts import (
     support_snippet_prompt,
     external_asset_prompt,
 )
-from gtm_core.db.schema import AssetType
+from emiva_core.db.schema import AssetType
 
 def generate_internal_brief(context_str: str) -> str:
     """Generates an internal brief using the LLM."""

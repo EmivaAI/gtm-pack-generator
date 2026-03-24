@@ -2,9 +2,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from gtm_core.core.settings import settings
-from gtm_core.core.logger import logger
-from gtm_pack_generator.api.routes import generate
+from emiva_core.core.settings import settings
+from emiva_core.core.logger import logger
+from gtm_pack_generator.api.routes import generate, crud
 
 
 @asynccontextmanager

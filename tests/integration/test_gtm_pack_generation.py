@@ -8,7 +8,7 @@ import pytest
 from unittest.mock import MagicMock
 from sqlalchemy.orm import Session
 
-from gtm_core.db.schema import (
+from emiva_core.db.schema import (
     ChangeEvent,
     LaunchCandidate,
     BrandProfile,

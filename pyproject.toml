@@ -1,7 +1,7 @@
 [project]
-name = "gtm-pack-generator"
+name = "emiva"
 version = "0.1.0"
-description = "Add your description here"
+description = "Emiva Context Graph: Detects product changes, generates GTM packs, and provides A2A context skill interface."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

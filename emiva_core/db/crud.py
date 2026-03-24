@@ -2,7 +2,7 @@ import uuid
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from gtm_core.db.schema import (
+from emiva_core.db.schema import (
     LaunchCandidate,
     BrandProfile,
     AudienceSegment,

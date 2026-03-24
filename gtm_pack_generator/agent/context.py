@@ -1,6 +1,6 @@
 import json
 from typing import List, Optional
-from gtm_core.db.schema import LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment
+from emiva_core.db.schema import LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment
 
 
 def build_candidate_context(
