@@ -1,4 +1,8 @@
-from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+from langchain_core.prompts import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
 SYSTEM_PROMPT = """You are an expert Go-To-Market (GTM) strategist and copywriter.
 Your goal is to generate high-quality GTM assets based on the strict context constraints provided.
@@ -38,9 +42,17 @@ EXTERNAL_ASSET_TEMPLATE = """Please generate content for a {asset_type}.
 Use the following context constraints:
 {context}
 
+---
+USER PREFERENCE / LEARNING BIAS:
+{preference_hint}
+---
+
 CRITICAL: You must generate EXACTLY TWO variants and return them in valid JSON format.
 Variant A: "Short and Direct" (Punchy, get straight to the point)
 Variant B: "Detailed and Narrative" (Story-driven, explanatory, slightly longer)
+
+Instructions for Preference:
+While you must still provide both variants, you should ensure that the variant corresponding to the "USER PREFERENCE" above is exceptionally strong and tailored.
 
 Output Format (JSON only):
 {{
@@ -49,27 +61,37 @@ Output Format (JSON only):
 }}
 """
 
-support_snippet_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(SUPPORT_SNIPPET_TEMPLATE)
-])
+support_snippet_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(SUPPORT_SNIPPET_TEMPLATE),
+    ]
+)
 
-changelog_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(CHANGELOG_TEMPLATE)
-])
+changelog_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(CHANGELOG_TEMPLATE),
+    ]
+)
 
-internal_brief_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(INTERNAL_BRIEF_TEMPLATE)
-])
+internal_brief_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(INTERNAL_BRIEF_TEMPLATE),
+    ]
+)
 
-sales_snippet_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(SALES_SNIPPET_TEMPLATE)
-])
+sales_snippet_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(SALES_SNIPPET_TEMPLATE),
+    ]
+)
 
-external_asset_prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
-    HumanMessagePromptTemplate.from_template(EXTERNAL_ASSET_TEMPLATE)
-])
+external_asset_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessagePromptTemplate.from_template(SYSTEM_PROMPT),
+        HumanMessagePromptTemplate.from_template(EXTERNAL_ASSET_TEMPLATE),
+    ]
+)

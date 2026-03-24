@@ -1,27 +1,35 @@
 """
 Integration tests for generate_gtm_pack (app.services.pack_generator) with call caching.
 """
+
 import uuid
-import os
 import vcr
 import pytest
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 from sqlalchemy.orm import Session
 
 from app.db.schema import (
-    ChangeEvent, LaunchCandidate, BrandProfile, AudienceSegment,
-    GtmPack, GtmAsset, LaunchTier, PackStatus, AssetType, AssetStatus,
+    ChangeEvent,
+    LaunchCandidate,
+    BrandProfile,
+    AudienceSegment,
+    GtmPack,
+    GtmAsset,
+    LaunchTier,
+    PackStatus,
+    AssetType,
+    AssetStatus,
 )
 from app.services.pack_generator import generate_gtm_pack
 
 # Configure VCR to record LLM calls to a local cassette.
 # This prevents expensive repeated API calls.
 my_vcr = vcr.VCR(
-    serializer='yaml',
-    cassette_library_dir='tests/integration/cassettes',
-    record_mode='once',
-    match_on=['method', 'scheme', 'host', 'port', 'path', 'query'],
-    filter_headers=['authorization', 'x-api-key'],
+    serializer="yaml",
+    cassette_library_dir="tests/integration/cassettes",
+    record_mode="once",
+    match_on=["method", "scheme", "host", "port", "path", "query"],
+    filter_headers=["authorization", "x-api-key"],
 )
 
 RESULTS_FILE = "tests/integration/test_gtm_pack_generation_results.md"
@@ -71,7 +79,10 @@ def brand_profile():
         "monitor business KPIs in real time."
     )
     b.tone_rules = {"voice": "confident but approachable", "avoid": ["hype", "jargon"]}
-    b.allowed_claims = ["60% reduction in investigation time", "SOC 2 Type II certified"]
+    b.allowed_claims = [
+        "60% reduction in investigation time",
+        "SOC 2 Type II certified",
+    ]
     b.disallowed_claims = ["best in class", "industry leading", "guaranteed ROI"]
     return b
 
@@ -80,8 +91,14 @@ def brand_profile():
 def audiences():
     analyst = MagicMock(spec=AudienceSegment)
     analyst.persona_name = "Data Analyst"
-    analyst.pain_points = ["Too many false-positive alerts", "Alert fatigue from manual monitoring"]
-    analyst.desired_outcomes = ["Catch real anomalies faster", "Less time on dashboards"]
+    analyst.pain_points = [
+        "Too many false-positive alerts",
+        "Alert fatigue from manual monitoring",
+    ]
+    analyst.desired_outcomes = [
+        "Catch real anomalies faster",
+        "Less time on dashboards",
+    ]
     analyst.objections = ["Will it trigger too often?"]
 
     manager = MagicMock(spec=AudienceSegment)
@@ -97,7 +114,10 @@ def audiences():
 # DB mock
 # ---------------------------------------------------------------------------
 
-def make_mock_db(candidate, brand_profile, audiences, approved_assets=None, approved_candidates=None):
+
+def make_mock_db(
+    candidate, brand_profile, audiences, approved_assets=None, approved_candidates=None
+):
     """
     Wire a mock Session:
       - scalar() returns LaunchCandidate then BrandProfile
@@ -108,12 +128,15 @@ def make_mock_db(candidate, brand_profile, audiences, approved_assets=None, appr
     """
     db = MagicMock(spec=Session)
     db.scalar.side_effect = [candidate, brand_profile]
-    
+
     # scalars().all() returns a list of items for each call in sequence
     db.scalars.return_value.all.side_effect = [
         audiences,
         approved_assets or [],
-        approved_candidates or []
+        approved_candidates or [],
+        [], # for EMAIL preference hint
+        [], # for LINKEDIN preference hint
+        [], # for CHANGELOG preference hint
     ]
 
     added: list = []
@@ -137,11 +160,12 @@ def make_mock_db(candidate, brand_profile, audiences, approved_assets=None, appr
 # Tests
 # ---------------------------------------------------------------------------
 
+
 class TestGenerateGtmPack:
     @pytest.fixture(autouse=True)
     def setup(self, candidate, brand_profile, audiences):
         self.db = make_mock_db(candidate, brand_profile, audiences)
-        with my_vcr.use_cassette('gtm_pack_generation.yaml'):
+        with my_vcr.use_cassette("gtm_pack_generation.yaml"):
             self.pack = generate_gtm_pack(self.db, CANDIDATE_ID)
 
     def test_returns_gtm_pack_in_draft(self):
@@ -179,20 +203,31 @@ class TestGenerateGtmPack:
 
     def test_external_assets_are_valid_json_without_fences(self):
         import json
+
         external_types = {AssetType.EMAIL, AssetType.LINKEDIN, AssetType.CHANGELOG}
-        assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset) and obj.asset_type in external_types]
-        
+        assets = [
+            obj
+            for obj in self.db._added
+            if isinstance(obj, GtmAsset) and obj.asset_type in external_types
+        ]
+
         for asset in assets:
             content = asset.content_draft
-            assert not content.startswith("```"), f"{asset.asset_type.value} starts with markdown fence"
-            assert not content.endswith("```"), f"{asset.asset_type.value} ends with markdown fence"
-            
+            assert not content.startswith("```"), (
+                f"{asset.asset_type.value} starts with markdown fence"
+            )
+            assert not content.endswith("```"), (
+                f"{asset.asset_type.value} ends with markdown fence"
+            )
+
             try:
                 parsed = json.loads(content)
                 assert "variant_a" in parsed
                 assert "variant_b" in parsed
             except json.JSONDecodeError:
-                pytest.fail(f"{asset.asset_type.value} content is not valid JSON:\\n{content}")
+                pytest.fail(
+                    f"{asset.asset_type.value} content is not valid JSON:\\n{content}"
+                )
 
     def test_all_assets_are_in_draft_status(self):
         assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset)]
@@ -202,16 +237,16 @@ class TestGenerateGtmPack:
     def test_write_results_to_markdown(self):
         """Write all LLM-generated asset content to a markdown file for review."""
         assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset)]
-        
+
         with open(RESULTS_FILE, "w", encoding="utf-8") as f:
-            f.write(f"# GTM Pack Generation Results\n\n")
+            f.write("# GTM Pack Generation Results\n\n")
             f.write(f"**Candidate ID:** `{CANDIDATE_ID}`\n")
-            f.write(f"**Status:** `SUCCESS`\n\n")
-            
+            f.write("**Status:** `SUCCESS`\n\n")
+
             for asset in assets:
                 f.write(f"## {asset.asset_type.value}\n")
                 f.write(f"```markdown\n{asset.content_draft}\n```\n\n")
-        
+
         print(f"\nResults written to {RESULTS_FILE}")
 
 

@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     version: str = "1.0.0"
     debug: bool = False
     environment: str = "development"
-    
+
     postgres_user: str = "emiva-user"
     postgres_password: str = ""
     postgres_db: str = "emiva-db"
@@ -19,16 +19,18 @@ class Settings(BaseSettings):
     @property
     def database_url(self) -> str:
         return f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
-    
+
     llm_provider: str
     llm_model_name: str
-    
+
     openai_api_key: str | None = None
     anthropic_api_key: str | None = None
     groq_api_key: str | None = None
 
     default_openai_model: str = "gpt-4o"
-    default_anthropic_model: str = "claude-3-5-sonnet-20241022" # TODO: Verify this model name exists
+    default_anthropic_model: str = (
+        "claude-3-5-sonnet-20241022"  # TODO: Verify this model name exists
+    )
     default_groq_model: str = "llama-3.3-70b-versatile"
 
     temperature: float = 0.7
@@ -40,7 +42,9 @@ class Settings(BaseSettings):
 
         supported_providers = [p.value for p in Provider]
         if provider not in supported_providers:
-            raise ValueError(f"Unsupported LLM provider '{provider}'. Must be one of: {supported_providers}")
+            raise ValueError(
+                f"Unsupported LLM provider '{provider}'. Must be one of: {supported_providers}"
+            )
 
         key_map = {
             Provider.OPENAI.value: ("openai_api_key", "OPENAI_API_KEY"),
@@ -54,15 +58,14 @@ class Settings(BaseSettings):
 
         return values
 
-    
     model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        extra="ignore"
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
     )
+
 
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
+
 
 settings = get_settings()

@@ -6,14 +6,15 @@ from app.services.pack_generator import generate_gtm_pack
 
 router = APIRouter()
 
+
 @router.post("/{candidate_id}", summary="Generate a GTM pack for a candidate")
 async def generate_pack(candidate_id: uuid.UUID, db: Session = Depends(get_db)):
     try:
         pack = generate_gtm_pack(db, candidate_id)
         return {
-            "message": f"Generation triggered successfully for candidate {candidate_id}", 
+            "message": f"Generation triggered successfully for candidate {candidate_id}",
             "status": "success",
-            "pack_id": pack.id
+            "pack_id": pack.id,
         }
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))

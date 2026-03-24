@@ -4,12 +4,15 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.settings import settings
 from app.core.logger import logger
+from app.api.routes import generate
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up application resources...")
     yield
     logger.info("Shutting down application resources...")
+
 
 app = FastAPI(
     title=settings.project_name,
@@ -27,6 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     logger.error(f"Unhandled application exception: {exc}", exc_info=True)
@@ -35,9 +39,11 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "Internal Server Error. Please try again later."},
     )
 
+
 @app.get("/health", tags=["System"])
 async def health_check():
     return {"status": "up", "version": settings.version}
 
-from app.api.routes import generate
+
+
 app.include_router(generate.router, prefix="/api/generate", tags=["Generate"])

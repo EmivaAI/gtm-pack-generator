@@ -1,10 +1,11 @@
-import logging
 from functools import lru_cache
 from langchain.chat_models import init_chat_model
 from app.core.settings import settings
 from app.core.llm_providers import Provider
+from app.core.logger import setup_logger
 
-logger = logging.getLogger(__name__)
+logger = setup_logger(__name__)
+
 
 def _build_llm(provider: Provider):
     """
@@ -33,11 +34,14 @@ def _build_llm(provider: Provider):
             api_key=settings.groq_api_key,
         )
 
+
 @lru_cache(maxsize=1)
 def get_llm_instance():
     """
     Returns the application-wide LLM instance, created lazily on first call.
     Cached for the lifetime of the process.
     """
-    provider = Provider(settings.llm_provider) if settings.llm_provider else Provider.OPENAI
+    provider = (
+        Provider(settings.llm_provider) if settings.llm_provider else Provider.OPENAI
+    )
     return _build_llm(provider)
