@@ -14,20 +14,9 @@ def get_workspace_preferences(db: Session, workspace_id: uuid.UUID, asset_type: 
     
     Returns a preference hint string for the LLM.
     """
-    # Query approved assets for this workspace and asset type
-    # Note: We need to join with GtmPack to filter by workspace_id
-    from app.db.schema import GtmPack
+    from app.db import crud
     
-    stmt = (
-        select(GtmAsset)
-        .join(GtmPack)
-        .where(GtmPack.workspace_id == workspace_id)
-        .where(GtmAsset.asset_type == asset_type)
-        .where(GtmAsset.status == AssetStatus.APPROVED)
-        .where(GtmAsset.content_final.is_not(None))
-    )
-    
-    approved_assets = db.scalars(stmt).all()
+    approved_assets = crud.get_approved_assets_for_learning(db, workspace_id, asset_type)
     
     if not approved_assets:
         return "No specific preference found. Provide two balanced variants."

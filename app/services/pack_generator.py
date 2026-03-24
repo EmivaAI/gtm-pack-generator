@@ -31,6 +31,8 @@ from app.services.learning import get_workspace_preferences
 logger = setup_logger(__name__)
 
 
+from app.db import crud
+
 def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     """
     Main orchestration logic for GTM generation.
@@ -40,46 +42,27 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
     4. Records Dual Variants (RL-Lite) and standard drafts into the db
     """
     # 1. Fetch Candidate and Hierarchy
-    candidate = db.scalar(
-        select(LaunchCandidate).where(LaunchCandidate.id == candidate_id)
-    )
+    candidate = crud.get_candidate(db, candidate_id)
     if not candidate:
         raise ValueError(f"LaunchCandidate {candidate_id} not found")
 
     change_event = candidate.change_event
     workspace_id = candidate.workspace_id
 
-    brand_profile = db.scalar(
-        select(BrandProfile).where(BrandProfile.workspace_id == workspace_id)
-    )
-    audiences = db.scalars(
-        select(AudienceSegment).where(AudienceSegment.workspace_id == workspace_id)
-    ).all()
+    brand_profile = crud.get_brand_profile(db, workspace_id)
+    audiences = crud.get_audience_segments(db, workspace_id)
 
     # 2. Fetch History (Pillars and Launch History)
-    approved_assets = db.scalars(
-        select(GtmAsset)
-        .join(GtmPack)
-        .where(GtmPack.workspace_id == workspace_id)
-        .where(GtmAsset.status == AssetStatus.APPROVED)
-        .order_by(GtmAsset.updated_at.desc())
-        .limit(5)
-    ).all()
+    approved_assets = crud.get_recent_approved_assets(db, workspace_id, limit=5)
     approved_pillars = [
-        a.content_final or a.content_draft
-        for a in approved_assets
-        if a.content_final or a.content_draft
+        asset.content_final or asset.content_draft
+        for asset in approved_assets
+        if asset.content_final or asset.content_draft
     ]
 
-    approved_candidates = db.scalars(
-        select(LaunchCandidate)
-        .where(LaunchCandidate.workspace_id == workspace_id)
-        .where(LaunchCandidate.status == LaunchStatus.APPROVED)
-        .order_by(LaunchCandidate.updated_at.desc())
-        .limit(3)
-    ).all()
+    approved_candidates = crud.get_recent_approved_candidates(db, workspace_id, limit=3)
     launch_history = [
-        f"{c.change_event.title} (Tier {c.tier.value})" for c in approved_candidates
+        f"{candidate.change_event.title} (Tier {candidate.tier.value})" for candidate in approved_candidates
     ]
 
     # 3. Context Assembly
@@ -88,18 +71,12 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
         change_event,
         brand_profile,
         audiences,
-        approved_pillars=approved_pillars,
-        launch_history=launch_history,
+        approved_pillars,
+        launch_history,
     )
 
     # 3. Create Overarching Pack
-    pack = GtmPack(
-        workspace_id=workspace_id,
-        launch_candidate_id=candidate.id,
-        status=PackStatus.DRAFT,
-    )
-    db.add(pack)
-    db.flush()  # Yield pack.id for asset references
+    pack = crud.create_gtm_pack(db, workspace_id, candidate.id)
 
     # 4. Generate Internal Assets
     _generate_internal_assets(db, pack.id, context_str)
@@ -115,48 +92,52 @@ def generate_gtm_pack(db: Session, candidate_id: uuid.UUID) -> GtmPack:
 
 
 def _generate_internal_assets(db: Session, pack_id: uuid.UUID, context_str: str):
-    """Generates standard Internal Briefs and Sales Snippets"""
-    # INTERNAL_BRIEF
+    """Orchestrates generation of all standard Internal assets"""
+    _generate_internal_brief(db, pack_id, context_str)
+    _generate_sales_snippet(db, pack_id, context_str)
+    _generate_support_snippet(db, pack_id, context_str)
+
+
+def _generate_internal_brief(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
         brief_chain = internal_brief_prompt | get_llm_instance()
         res = brief_chain.invoke({"context": context_str})
-        db.add(
-            GtmAsset(
-                gtm_pack_id=pack_id,
-                asset_type=AssetType.INTERNAL_BRIEF,
-                content_draft=res.content,
-                status=AssetStatus.DRAFT,
-            )
+        crud.create_gtm_asset(
+            db,
+            pack_id=pack_id,
+            asset_type=AssetType.INTERNAL_BRIEF,
+            content=res.content,
+            status=AssetStatus.DRAFT,
         )
     except Exception as e:
         logger.error(f"Failed to generate Internal Brief: {e}")
 
-    # SALES_SNIPPET
+
+def _generate_sales_snippet(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
         snippet_chain = sales_snippet_prompt | get_llm_instance()
         res = snippet_chain.invoke({"context": context_str})
-        db.add(
-            GtmAsset(
-                gtm_pack_id=pack_id,
-                asset_type=AssetType.SALES_SNIPPET,
-                content_draft=res.content,
-                status=AssetStatus.DRAFT,
-            )
+        crud.create_gtm_asset(
+            db,
+            pack_id=pack_id,
+            asset_type=AssetType.SALES_SNIPPET,
+            content=res.content,
+            status=AssetStatus.DRAFT,
         )
     except Exception as e:
         logger.error(f"Failed to generate Sales Snippet: {e}")
 
-    # SUPPORT_SNIPPET
+
+def _generate_support_snippet(db: Session, pack_id: uuid.UUID, context_str: str):
     try:
         support_chain = support_snippet_prompt | get_llm_instance()
         res = support_chain.invoke({"context": context_str})
-        db.add(
-            GtmAsset(
-                gtm_pack_id=pack_id,
-                asset_type=AssetType.SUPPORT_SNIPPET,
-                content_draft=res.content,
-                status=AssetStatus.DRAFT,
-            )
+        crud.create_gtm_asset(
+            db,
+            pack_id=pack_id,
+            asset_type=AssetType.SUPPORT_SNIPPET,
+            content=res.content,
+            status=AssetStatus.DRAFT,
         )
     except Exception as e:
         logger.error(f"Failed to generate Support Snippet: {e}")
@@ -194,13 +175,12 @@ def _generate_external_assets(
             # The JsonOutputParser returns a dict, so we convert it back to string
             content = json.dumps(res_dict, indent=2)
 
-            db.add(
-                GtmAsset(
-                    gtm_pack_id=pack_id,
-                    asset_type=ext_type,
-                    content_draft=content,
-                    status=AssetStatus.DRAFT,
-                )
+            crud.create_gtm_asset(
+                db,
+                pack_id=pack_id,
+                asset_type=ext_type,
+                content=content,
+                status=AssetStatus.DRAFT,
             )
         except Exception as e:
             logger.error(f"Failed to generate {ext_type.value}: {e}")
