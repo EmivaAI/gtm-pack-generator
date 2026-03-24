@@ -2,18 +2,18 @@ import json
 import uuid
 import os
 import time
-from datetime import datetime
 import httpx
+from emiva_core.core.logger import setup_logger
+
+logger = setup_logger(__name__)
 
 # API Base URL
 BASE_URL = "http://localhost:8000/api/v1"
-
 
 def load_narrative_json():
     json_path = os.path.join(os.path.dirname(__file__), "seed-narrative.json")
     with open(json_path, "r", encoding="utf-8") as f:
         return json.load(f)
-
 
 def wait_for_server(url, timeout=30):
     """Wait for the server to be up before seeding."""
@@ -28,7 +28,6 @@ def wait_for_server(url, timeout=30):
         print(f"Waiting for server at {url}...")
         time.sleep(2)
     return False
-
 
 def seed_narrative():
     if not wait_for_server(BASE_URL):
@@ -159,9 +158,8 @@ def seed_narrative():
                 print(f"Workspace     : {workspace_name}")
                 print(f"Feature       : {title}")
                 print(f"Candidate ID  : {cid}")
-                print(f"Test CURL     : curl -X POST http://localhost:8000/api/generate/{cid}")
+                print(f"Test CURL     : curl -X POST http://localhost:8080/api/generate/{cid}")
                 print("-" * 60)
-
 
 if __name__ == "__main__":
     seed_narrative()

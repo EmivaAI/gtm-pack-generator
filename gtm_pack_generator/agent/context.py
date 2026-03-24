@@ -3,6 +3,7 @@ from typing import List, Optional
 from emiva_core.db.schema import LaunchCandidate, BrandProfile, ChangeEvent, AudienceSegment
 
 
+
 def build_candidate_context(
     candidate: LaunchCandidate,
     change_event: ChangeEvent,
