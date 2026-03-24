@@ -50,6 +50,12 @@ OPENAI_API_KEY=sk-...
 5. **Approval**: Capturing edits/approvals into `approval_event` for learning.
 6. **A2A Interaction**: External agents querying context via `/v1/context/bundle`.
 
+## Observability (Local Tracing)
+Emiva uses **Arize Phoenix** for local LLM observability. To view your traces:
+1. Start the server as usual (`uv run uvicorn gtm_pack_generator.main:app`).
+2. The Phoenix dashboard will automatically start at `http://localhost:6006`.
+3. Every LLM call, prompt, and output will be recorded there for debugging.
+
 ## API Documentation
 - **POST `/api/generate/{candidate_id}`**: Generates a complete GTM pack.
 - **GET `/v1/context/brand`**: Returns the brand truth profile.

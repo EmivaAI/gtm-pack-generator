@@ -4,12 +4,14 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from emiva_core.core.settings import settings
 from emiva_core.core.logger import logger
+from emiva_core.core.observability import setup_observability
 from gtm_pack_generator.api.routes import generate, crud
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up application resources...")
+    setup_observability()
     yield
     logger.info("Shutting down application resources...")
 

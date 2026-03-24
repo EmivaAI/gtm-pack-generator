@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     version: str = "1.0.0"
     debug: bool = False
     environment: str = "development"
+    enable_phoenix: bool = True
 
     postgres_user: str = "emiva-user"
     postgres_password: str = ""
