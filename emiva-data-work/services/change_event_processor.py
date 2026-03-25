@@ -7,6 +7,17 @@ from database.db import Session, SourceEvent, ChangeEvent
 # Helpers
 # ---------------------------------------------------------------------------
 
+def _safe(obj, *keys, default=None):
+    """Null-safe nested dict accessor. Returns default if any key is missing or value is None."""
+    for key in keys:
+        if not isinstance(obj, dict):
+            return default
+        obj = obj.get(key)
+        if obj is None:
+            return default
+    return obj
+
+
 def extract_jira_key(text: str):
     """Return the first Jira key (e.g. EMIVA-123) found in text, or None."""
     if not text:
@@ -50,16 +61,16 @@ def determine_change_type(issue_type: str = None, pr_title: str = None, summary:
 # ---------------------------------------------------------------------------
 
 def preprocess_jira(payload: dict) -> dict:
-    issue  = payload.get('issue', {})
-    fields = issue.get('fields', {})
+    issue  = payload.get('issue') or {}
+    fields = issue.get('fields') or {}
     key    = issue.get('key')
-    summary     = fields.get('summary', '')
-    description = fields.get('description', '')
-    priority    = fields.get('priority', {}).get('name', 'medium').lower()
-    status      = fields.get('status', {}).get('name', '')
-    issue_type  = fields.get('issuetype', {}).get('name')
-    component   = fields.get('project', {}).get('name', 'Unknown')
-    actor       = payload.get('user', {}).get('displayName')
+    summary     = fields.get('summary') or ''
+    description = fields.get('description') or ''
+    priority    = _safe(fields, 'priority', 'name', default='medium').lower()
+    status      = _safe(fields, 'status', 'name', default='')
+    issue_type  = _safe(fields, 'issuetype', 'name')
+    component   = _safe(fields, 'project', 'name', default='Unknown')
+    actor       = _safe(payload, 'user', 'displayName')
 
     return {
         "external_ticket_id": key,
@@ -78,15 +89,15 @@ def preprocess_jira(payload: dict) -> dict:
 
 
 def preprocess_github(payload: dict) -> dict:
-    pr  = payload.get('pull_request', {})
-    repo = payload.get('repository', {}).get('name', 'Unknown')
+    pr   = payload.get('pull_request') or {}
+    repo = _safe(payload, 'repository', 'name', default='Unknown')
 
     if pr:
         # Pull-request event
-        title  = pr.get('title', '')
-        body   = pr.get('body', '') or ''
-        actor  = pr.get('user', {}).get('login')
-        labels = [l.get('name') for l in pr.get('labels', [])]
+        title  = pr.get('title') or ''
+        body   = pr.get('body') or ''
+        actor  = _safe(pr, 'user', 'login')
+        labels = [l.get('name') for l in (pr.get('labels') or []) if l.get('name')]
         merged = pr.get('merged') or payload.get('action') == 'closed'
 
         # Try to find a Jira key in title or body
@@ -96,51 +107,65 @@ def preprocess_github(payload: dict) -> dict:
             "external_ticket_id": jira_key,
             "title":       title,
             "description": body,
-            "ticket_url":  pr.get('html_url', ''),
+            "ticket_url":  pr.get('html_url') or '',
             "change_type": determine_change_type(pr_title=title),
             "component":   repo,
             "severity":    "medium",
             "actors":      [actor] if actor else [],
             "raw_signals": {
-                "pr_number": pr.get('number'),
-                "pr_merged": merged,
-                "pr_labels": labels,
+                "event_kind": "pull_request",
+                "pr_number":  pr.get('number'),
+                "pr_merged":  merged,
+                "pr_labels":  labels,
             },
         }
 
-    # Push event
-    commits = payload.get('commits', [])
-    messages = [c.get('message', '') for c in commits]
+    # Push / commit event — previously ignored; now fully handled
+    commits   = payload.get('commits') or []
+    messages  = [c.get('message') or '' for c in commits if isinstance(c, dict)]
     first_msg = messages[0] if messages else ''
-    actor = payload.get('pusher', {}).get('name')
+    all_msgs  = "\n".join(messages)
+    actor     = _safe(payload, 'pusher', 'name')
+    ref       = payload.get('ref') or ''
+
+    # Collect all Jira keys from all commit messages
+    all_jira_keys = list(dict.fromkeys(
+        filter(None, [extract_jira_key(m) for m in messages])
+    ))
+    primary_key = all_jira_keys[0] if all_jira_keys else None
 
     return {
-        "external_ticket_id": extract_jira_key(first_msg),
-        "title":       f"Push to {repo}: {first_msg[:80]}",
-        "description": "\n".join(messages),
-        "ticket_url":  payload.get('compare', ''),
+        "external_ticket_id": primary_key,
+        "title":       f"Push to {repo} ({ref}): {first_msg[:80]}",
+        "description": all_msgs,
+        "ticket_url":  payload.get('compare') or '',
         "change_type": determine_change_type(pr_title=first_msg),
         "component":   repo,
         "severity":    "medium",
         "actors":      [actor] if actor else [],
         "raw_signals": {
-            "push_ref":     payload.get('ref'),
+            "event_kind":   "push",
+            "push_ref":     ref,
             "commit_count": len(commits),
+            "jira_keys":    all_jira_keys,
         },
     }
 
 
 def preprocess_slack(payload: dict) -> dict:
-    event  = payload.get('event', {})
-    text   = event.get('text', '')
-    actor  = event.get('user')
-    thread = event.get('thread_ts')
+    event   = payload.get('event') or {}
+    text    = event.get('text') or ''
+    actor   = event.get('user')
+    thread  = event.get('thread_ts')
     channel = event.get('channel')
     jira_key = extract_jira_key(text)
 
+    if not jira_key:
+        print(f"  [INFO] Slack message has no Jira key — storing as standalone signal (channel={channel})")
+
     return {
-        "external_ticket_id": jira_key,
-        "title":       f"Slack message: {text[:120]}",
+        "external_ticket_id": jira_key,          # None is fine; stored as orphan signal
+        "title":       f"Slack message: {text[:120]}" if text else "Slack message (empty)",
         "description": text,
         "ticket_url":  "",
         "change_type": "unknown",
@@ -148,9 +173,10 @@ def preprocess_slack(payload: dict) -> dict:
         "severity":    "low",
         "actors":      [actor] if actor else [],
         "raw_signals": {
-            "channel":   channel,
-            "thread_ts": thread,
+            "channel":    channel,
+            "thread_ts":  thread,
             "has_thread": thread is not None,
+            "has_jira_key": jira_key is not None,
         },
     }
 
@@ -185,13 +211,31 @@ def process_unprocessed_events():
             preprocessor = PREPROCESSORS.get(event.source_type)
             if not preprocessor:
                 print(f"  [SKIP] Unknown source_type '{event.source_type}' for event {event.id}")
-                event.processed = True
+                event.processed = True          # don't block the queue on unknown types
                 continue
 
             try:
                 data = preprocessor(event.raw_payload)
             except Exception as e:
+                # Mark as processed so it doesn't block every subsequent run.
+                # The error is surfaced in raw_signals so it can be investigated.
                 print(f"  [ERROR] Failed to preprocess event {event.id}: {e}")
+                event.processed = True
+                error_change = ChangeEvent(
+                    workspace_id=event.workspace_id,
+                    source_event_id=event.id,
+                    title=f"[PROCESSING ERROR] {event.source_type} event {event.id}",
+                    description=str(e),
+                    change_type="unknown",
+                    component=event.source_type,
+                    severity="low",
+                    linked_issues=[],
+                    linked_prs=[],
+                    linked_threads=[],
+                    actors=[],
+                    raw_signals={"processing_error": str(e)},
+                )
+                session.add(error_change)
                 continue
 
             change = ChangeEvent(
