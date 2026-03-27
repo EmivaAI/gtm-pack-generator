@@ -18,8 +18,11 @@ dependencies = [
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.package-dir]
+"gtm_pack_generator" = "gtm_pack_generator"
+
 [tool.setuptools]
-packages = ["agent", "api", "services"]
+packages = ["gtm_pack_generator", "gtm_pack_generator.agent", "gtm_pack_generator.api", "gtm_pack_generator.services"]
 
 [tool.uv.sources]
 emiva_core = { workspace = true }
