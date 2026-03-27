@@ -63,6 +63,6 @@ Emiva uses **Arize Phoenix** for local LLM observability. To view your traces:
 
 ## Running Tests
 ```powershell
-# Example for integration tests
-$env:LLM_PROVIDER="groq"; $env:LLM_MODEL_NAME="llama-3.3-70b-versatile"; $env:GROQ_API_KEY="dummy"; uv run pytest tests/ -v
+# Run all tests across the workspace
+$env:LLM_PROVIDER="groq"; $env:LLM_MODEL_NAME="llama-3.3-70b-versatile"; $env:GROQ_API_KEY="dummy"; uv run pytest -v
 ```
