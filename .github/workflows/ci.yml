@@ -25,7 +25,7 @@ jobs:
         run: uv sync --group dev
 
       - name: Run tests
-        run: uv run pytest tests/ -v
+        run: uv run pytest -v
         env:
           LLM_PROVIDER: "groq"
           LLM_MODEL_NAME: "llama-3.3-70b-versatile"
