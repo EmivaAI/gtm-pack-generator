@@ -552,7 +552,9 @@ name = "emiva-workspace"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "emiva-api" },
     { name = "emiva-core" },
+    { name = "gtm-pack-generator" },
     { name = "httpx" },
     { name = "uvicorn" },
 ]
@@ -566,7 +568,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "emiva-api", editable = "emiva_api" },
     { name = "emiva-core", editable = "emiva_core" },
+    { name = "gtm-pack-generator", editable = "gtm_pack_generator" },
     { name = "httpx", specifier = ">=0.27.0" },
     { name = "uvicorn", specifier = ">=0.42.0" },
 ]
