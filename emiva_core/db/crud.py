@@ -12,7 +12,43 @@ from emiva_core.db.schema import (
     PackStatus,
     AssetStatus,
     LaunchStatus,
+    SourceEvent,
+    ChangeEvent,
 )
+
+def create_source_event(db: Session, workspace_id: uuid.UUID, title: str, description: str) -> SourceEvent:
+    event = SourceEvent(
+        workspace_id=workspace_id,
+        title=title,
+        description=description,
+    )
+    db.add(event)
+    db.flush()
+    return event
+
+def create_change_event(db: Session, workspace_id: uuid.UUID, title: str, description: str) -> ChangeEvent:
+    event = ChangeEvent(
+        workspace_id=workspace_id,
+        title=title,
+        description=description,
+    )
+    db.add(event)
+    db.flush()
+    return event
+
+def create_launch_candidate(db: Session, workspace_id: uuid.UUID, change_event_id: uuid.UUID, tier: str, score: float, reasons: List[str], is_external_safe: bool, status: LaunchStatus = LaunchStatus.PENDING_REVIEW) -> LaunchCandidate:
+    candidate = LaunchCandidate(
+        workspace_id=workspace_id,
+        change_event_id=change_event_id,
+        tier=tier,
+        score=score,
+        reasons=reasons,
+        is_external_safe=is_external_safe,
+        status=status,
+    )
+    db.add(candidate)
+    db.flush()
+    return candidate
 
 def get_candidate(db: Session, candidate_id: uuid.UUID) -> Optional[LaunchCandidate]:
     return db.scalar(
