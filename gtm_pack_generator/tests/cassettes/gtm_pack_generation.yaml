@@ -1,0 +1,806 @@
+interactions:
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate a comprehensive Internal Launch Brief for cross-functional teams (Sales,
+      Marketing, Support, Leadership).\nUse the following context:\n=== PRODUCT CHANGE
+      EVENT ===\nTitle: Smart Alerts: AI-powered anomaly detection\nDescription: Automatically
+      surfaces statistically significant metric drops and spikes to analysts, cutting
+      manual investigation time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch Decision Reasons:
+      [\"High customer impact \\u2014 affects all dashboard users\", \"Addresses #1
+      support ticket theme: missed anomalies\"]\n\n=== BRAND PROFILE ===\nProduct
+      Summary: Acme Analytics is a B2B SaaS platform helping data teams monitor business
+      KPIs in real time.\nTone Rules: {\"voice\": \"confident but approachable\",
+      \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60% reduction in investigation
+      time\", \"SOC 2 Type II certified\"]\nDISALLOWED Claims (NEVER USE): [\"best
+      in class\", \"industry leading\", \"guaranteed ROI\"]\n\n=== TARGET AUDIENCES
+      ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive alerts\",
+      \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch real
+      anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections: [\"Will
+      it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points: [\"Team
+      spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce on-call
+      burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\nFormat the brief with clear sections:
+      Summary, Value Prop, Key Audiences, and FAQs.\nReturn the result directly as
+      plain text/markdown.\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2134'
+      Content-Type:
+      - application/json
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        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
+        T/8B1YU+LasLAAA=
+    headers:
+      CF-RAY:
+      - 9e2ee8f60842cd4d-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:29 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=iPzMV_SkhtmAK.TDDwC8tEKW8U2RohQbmZa2mBghhvQ-1774619907.5252125-1.0.1.1-Mv4q9Bn6low5riwt1o1QlMJFbJXnuq5Igobkl3t3OyjitZqOD3sIGXqbsIaG4iAs2Is0hL6a5cZOLCiGh6PO3Rn3QFj3BRH8T8GTtx57MNbbyhdZiq1lpr_3_dWRvCzm;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 27 Mar 2026 14:28:29
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '995'
+      x-ratelimit-remaining-tokens:
+      - '11066'
+      x-ratelimit-reset-requests:
+      - 7m12s
+      x-ratelimit-reset-tokens:
+      - 4.67s
+      x-request-id:
+      - req_01kmqsdnk2ed2skj7p3zvkb8vn
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate a Sales Snippet (a short blurb sales reps can copy-paste to prospects).\nUse
+      the following context:\n=== PRODUCT CHANGE EVENT ===\nTitle: Smart Alerts: AI-powered
+      anomaly detection\nDescription: Automatically surfaces statistically significant
+      metric drops and spikes to analysts, cutting manual investigation time by ~60%.\n\nLaunch
+      Tier: TIER_1\nLaunch Decision Reasons: [\"High customer impact \\u2014 affects
+      all dashboard users\", \"Addresses #1 support ticket theme: missed anomalies\"]\n\n===
+      BRAND PROFILE ===\nProduct Summary: Acme Analytics is a B2B SaaS platform helping
+      data teams monitor business KPIs in real time.\nTone Rules: {\"voice\": \"confident
+      but approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60%
+      reduction in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED
+      Claims (NEVER USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n===
+      TARGET AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\nReturn the result directly as plain text.
+      Keep it punchy and outcome-focused.\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2042'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=iPzMV_SkhtmAK.TDDwC8tEKW8U2RohQbmZa2mBghhvQ-1774619907.5252125-1.0.1.1-Mv4q9Bn6low5riwt1o1QlMJFbJXnuq5Igobkl3t3OyjitZqOD3sIGXqbsIaG4iAs2Is0hL6a5cZOLCiGh6PO3Rn3QFj3BRH8T8GTtx57MNbbyhdZiq1lpr_3_dWRvCzm
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/1VTwY6bMBC99yssS71BBAYCyW3VU8977FbI4AHcGA+xh82mq/x7h22yVQ8gMX7v
+        +b2Z4V1aI4+ynzT18+LSoS+bclAq7TNl0rLrhrRphkNa7yvIiqqGph5kIrH7BT3dibsemQpk0fNR
+        H0ATsGhe1+U+PxzyLJEzGnAMd07POi12RVpnXfoKIWqyDjbahLaHKI8/3qX1Bt7kceNBjHoEeXyX
+        ARl3lDpGG0l72jjoCfxm40V+W0lY/wqR7Kg3K4LsDKK7in32VVwsTeJ51oHEk4NAMRG4BuHhIp6+
+        pwteIIAR2uOs3VUYIE63aQycZQ2wE08r8RnZXjsGxDUMugfBRojdPKp29HbgD09iBgq2FybgElnX
+        iLjYE/C1EcUVV8EgfqifBLfL3W+2EMWgI0G4U4DfjlvwNwv7MTpOHepg4k4866sYEU13BUEo9JaL
+        6Zx/hQ/+rP3K2jN6SxisHwVyxyfQZvci5S2RDsclYMdN96tziRyst3Fq2VHkUR5lJFzk7Wci18cQ
+        zius0G5ueDy7fJ83uVLFPpGsMy/UEp7As16ZN/9qd3SmVF43da22wT0W5pNRVf+X7yRVVGVZ1g2T
+        CEm7fzfUxWfpga3qPeOr8nZ33HYc5WTw4h8J45W7O7ccdISwcE+25RmWtlC1Aq3MIee1emvHgOct
+        7se/EeDcZvlpPkdzHvxgxtgH5efLwTS/zxnjI3yse1YVWZGpfXXbSuGV15mtQWAJDmSAx2Hk7csf
+        A13Se3IDAAA=
+    headers:
+      CF-RAY:
+      - 9e2ee9028dc046b3-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:30 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '994'
+      x-ratelimit-remaining-tokens:
+      - '10824'
+      x-ratelimit-reset-requests:
+      - 8m38.4s
+      x-ratelimit-reset-tokens:
+      - 5.88s
+      x-request-id:
+      - req_01kmqsdqfnfdgscr2nmw9d8zq0
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate a Support Snippet (a set of internal talking points for customer support
+      agents).\nUse the following context:\n=== PRODUCT CHANGE EVENT ===\nTitle: Smart
+      Alerts: AI-powered anomaly detection\nDescription: Automatically surfaces statistically
+      significant metric drops and spikes to analysts, cutting manual investigation
+      time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch Decision Reasons: [\"High customer
+      impact \\u2014 affects all dashboard users\", \"Addresses #1 support ticket
+      theme: missed anomalies\"]\n\n=== BRAND PROFILE ===\nProduct Summary: Acme Analytics
+      is a B2B SaaS platform helping data teams monitor business KPIs in real time.\nTone
+      Rules: {\"voice\": \"confident but approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed
+      Claims: [\"60% reduction in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED
+      Claims (NEVER USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n===
+      TARGET AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\nReturn the result directly as plain text.
+      Focus on technical caveats, known safe-guards, and user outcome positioning.\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2093'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=iPzMV_SkhtmAK.TDDwC8tEKW8U2RohQbmZa2mBghhvQ-1774619907.5252125-1.0.1.1-Mv4q9Bn6low5riwt1o1QlMJFbJXnuq5Igobkl3t3OyjitZqOD3sIGXqbsIaG4iAs2Is0hL6a5cZOLCiGh6PO3Rn3QFj3BRH8T8GTtx57MNbbyhdZiq1lpr_3_dWRvCzm
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        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
+        1JUTjJwnrz/8C3kPtDBCDAAA
+    headers:
+      CF-RAY:
+      - 9e2ee90cd8f8f3bc-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:32 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=uV140QNFHswl9ZubzG2OFWrXnDGDpP1R_jEHgC5Bwhk-1774619911.1755917-1.0.1.1-5u9klJWEhWF7kgpSQRG.TfNl7rJoQLLwJiub17oeH8WWJUDZl_1zQVJpV8XlKZ6bt3En8CORLdLPf5zTfHake6nkLG0ijy.konbsSWVsRxeQmUXUMollxEAbElyvN0cN;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 27 Mar 2026 14:28:32
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '993'
+      x-ratelimit-remaining-tokens:
+      - '10396'
+      x-ratelimit-reset-requests:
+      - 10m4.8s
+      x-ratelimit-reset-tokens:
+      - 8.02s
+      x-request-id:
+      - req_01kmqsds1beda96e0a0e526c6h
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate content for a EMAIL.\nUse the following context constraints:\n=== PRODUCT
+      CHANGE EVENT ===\nTitle: Smart Alerts: AI-powered anomaly detection\nDescription:
+      Automatically surfaces statistically significant metric drops and spikes to
+      analysts, cutting manual investigation time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch
+      Decision Reasons: [\"High customer impact \\u2014 affects all dashboard users\",
+      \"Addresses #1 support ticket theme: missed anomalies\"]\n\n=== BRAND PROFILE
+      ===\nProduct Summary: Acme Analytics is a B2B SaaS platform helping data teams
+      monitor business KPIs in real time.\nTone Rules: {\"voice\": \"confident but
+      approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60% reduction
+      in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED Claims (NEVER
+      USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n=== TARGET
+      AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\n---\nUSER PREFERENCE / LEARNING BIAS:\nNo
+      specific preference found. Provide two balanced variants.\n---\n\nCRITICAL:
+      You must generate EXACTLY TWO variants and return them in valid JSON format.\nVariant
+      A: \"Short and Direct\" (Punchy, get straight to the point)\nVariant B: \"Detailed
+      and Narrative\" (Story-driven, explanatory, slightly longer)\n\nInstructions
+      for Preference:\nWhile you must still provide both variants, you should ensure
+      that the variant corresponding to the \"USER PREFERENCE\" above is exceptionally
+      strong and tailored.\n\nOutput Format (JSON only):\n{\n  \"variant_a\": \"Text
+      for variant A...\",\n  \"variant_b\": \"Text for variant B...\"\n}\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2595'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=uV140QNFHswl9ZubzG2OFWrXnDGDpP1R_jEHgC5Bwhk-1774619911.1755917-1.0.1.1-5u9klJWEhWF7kgpSQRG.TfNl7rJoQLLwJiub17oeH8WWJUDZl_1zQVJpV8XlKZ6bt3En8CORLdLPf5zTfHake6nkLG0ijy.konbsSWVsRxeQmUXUMollxEAbElyvN0cN
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/51VTY/iRhC951eUWor2YhAGg4HbJLmMFGkPs9IeQsS07bLdQ7vb092GISP+e14b
+        ZlZEUQ45IOFyfbz36sPvQlViK8pWhrLr9aSQy8U643SSV9lykpWpnBR5tp4s1rLM04Lz5aYSibDF
+        C5fhFjgtLUI5KGvwqnQsAyNpmufZKt1s0iwRna1Yw11r2cnJYrqY5LNicmTnZVCaY1hrVclebP94
+        F8pU/Ca2M8Sx97JhsX0XzsJvK6T3ygdpQoyxJrCJMJ6fn1+8NTvzvjNEO3GUTsFnL3dii8dHE5yt
+        hlKZhp466QI9aHbBb+nhcdLbEzuuSBrbSX2migO4gcyUHoYAW1Cl1HihKhRT9ZlQPwDEzexVY1SN
+        BxOo4+BUSZWzvUfCinyvDuwTQoFreWWOjNBGxgoUVMdUnGk1+3lKT/JMjbVVcWYKlmSESDUcm4HH
+        ZC1rbeOrzjomrlFUcaxqjQrWIf2UfmfpzNVBFnYI1NrTHWcCUCrYcK0Cne3gKLDspjuR3EtXXKX7
+        zl9irbdSoakjLGPsYEpAbJm0xN+WbH1XIqGY9r+kpRpDMjiGxNCJKhkknODiA1lHbBplmCMj6mBv
+        2CURKx0M2ERGtRt8cNAmShpunEZppBnGttxEQW7fFla6ylONxxbQIkADl+iuPBRxamzmDadiH0E0
+        HKiwTQP8lT0ZdA7N0J6ptx7+aOP0H8K20jSIDXEn6Jczybvx8YOr5TgD/2N+QP6L1lQOt579+xhJ
+        h9ZU12n61iqPfNL4UbmoUIklbzGKd0xr6UOUd5xQhjCTCIuKwWHck+vcySMTlq2OGwAfKDGCGNv2
+        CrlVOE/pKyxPX3+lOX0790yPj1RCFjCDgL2WAep36CxkGDVi8lwOUP481nCslSxUTDXiRfurKX1v
+        GZ5upI8x1NYeooBoHLqPsdUYkyuWk3WHWmMy0DmvcI/OV9jjJoz6IKi25YDeGmpV007gJctAQfoD
+        FL5rJaRD2TEGS9dP6TflS4t7NQ7ftQHGHmUcA/JWD2MbosYYSuNHqiOsH6uJHeox0VFALNvOXHYG
+        V0tcEqFt0ztb4PaZQetE1Moo3+7BDycNx80H24vLn4kYPm7h68AD7yMrXMnpKsvy9Wq+WiUCebo+
+        7IM9QGixXc43P2w379l8vchmy8Um3s+Pu/0ZMZ/n9/Zb1HqxSXP8FokINkj9GZAvV5+mD99Vvkyz
+        bDm/3CDvC3A5xCX6oOix6NztwRSr3UOeeMTrfp8t0/WsqrPZBuf9bd84+xr5jt8ox6/7WXroXn11
+        XLxwk7tlNXcvsj/9xacC/p7jZ2c+Wyzm6Wa5SS/R5I74rAAaO6QAoYpxISpx+elvCRjbcvoGAAA=
+    headers:
+      CF-RAY:
+      - 9e2ee919c88c3e52-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:34 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=zuUxz9u2zjcaeLDN71hIXuHDaJiI.8wRQ7iZhF516HA-1774619913.2441802-1.0.1.1-PkgYWpm_TzXwBTsZl9vkH9in49351E4ijEuEDY5UO.SksoAkQVXPr2cliBswHUMrU6npEvNZj7fkd75ffzkzbczlEY_JQbfvOHXvTI4D5bwHGmh5bkZqzvljCwSALyKJ;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 27 Mar 2026 14:28:34
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '992'
+      x-ratelimit-remaining-tokens:
+      - '10126'
+      x-ratelimit-reset-requests:
+      - 11m31.2s
+      x-ratelimit-reset-tokens:
+      - 9.37s
+      x-request-id:
+      - req_01kmqsdv3jeg7r5d2rjapwzewb
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate content for a LINKEDIN.\nUse the following context constraints:\n===
+      PRODUCT CHANGE EVENT ===\nTitle: Smart Alerts: AI-powered anomaly detection\nDescription:
+      Automatically surfaces statistically significant metric drops and spikes to
+      analysts, cutting manual investigation time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch
+      Decision Reasons: [\"High customer impact \\u2014 affects all dashboard users\",
+      \"Addresses #1 support ticket theme: missed anomalies\"]\n\n=== BRAND PROFILE
+      ===\nProduct Summary: Acme Analytics is a B2B SaaS platform helping data teams
+      monitor business KPIs in real time.\nTone Rules: {\"voice\": \"confident but
+      approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60% reduction
+      in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED Claims (NEVER
+      USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n=== TARGET
+      AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\n---\nUSER PREFERENCE / LEARNING BIAS:\nNo
+      specific preference found. Provide two balanced variants.\n---\n\nCRITICAL:
+      You must generate EXACTLY TWO variants and return them in valid JSON format.\nVariant
+      A: \"Short and Direct\" (Punchy, get straight to the point)\nVariant B: \"Detailed
+      and Narrative\" (Story-driven, explanatory, slightly longer)\n\nInstructions
+      for Preference:\nWhile you must still provide both variants, you should ensure
+      that the variant corresponding to the \"USER PREFERENCE\" above is exceptionally
+      strong and tailored.\n\nOutput Format (JSON only):\n{\n  \"variant_a\": \"Text
+      for variant A...\",\n  \"variant_b\": \"Text for variant B...\"\n}\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2598'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=zuUxz9u2zjcaeLDN71hIXuHDaJiI.8wRQ7iZhF516HA-1774619913.2441802-1.0.1.1-PkgYWpm_TzXwBTsZl9vkH9in49351E4ijEuEDY5UO.SksoAkQVXPr2cliBswHUMrU6npEvNZj7fkd75ffzkzbczlEY_JQbfvOHXvTI4D5bwHGmh5bkZqzvljCwSALyKJ
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/31VTW/jNhS891c8ECj2IhuS5fjrUrh7ClqgBbJAD3XhUNSTxbVEyiRlxwj83ztU
+        7GSzbfYo8n3MzHscPQtdipVQtQyq7ZqRTKdymVXpaDaZqdFUqXK0yKZ3o4WaVMVCzWdcpCIRtvjK
+        KlwTx8oilYO2BlfKsQyMotl8Pp1ly2U2S0RrS24Q3jSylaN8nI/maTE6svMy6IZjWm21Yi9Wfz8L
+        bUp+EqsUeey93LFYPQtnEbcS0nvtgzQh5lgT2EQYj4+PX701G/O8MUQbcZROI2YrN2KFz3sTnC17
+        pc2OHlrpAq0bdsGvaH0/6uyJHZckjW1lc6aSA7iBzJg+94FaaXrZkDZH9kHvZLyhoFum4kyz9Gfk
+        lVRZ1XvCxQl6ICUEUBvTgzzTztqyODMFSzI2pQoldj2/5MnGM3XW66BRf0y/s3SGWutwX1i0r+2J
+        1grd1gbgglaelDRUc9PR2faOAssWR0HVBOWbKw3NHsU9YIw3InkvSvEiyho9UAFcIntb0QnxUaEa
+        ZQcyV+otB6cVqh81nxJcQCSwabUHFgfk6tu2v9A6fIc4oRNTj6G6OLmSQg3OUpvY9L+axFvddtYh
+        VnGMwZwrXXL8QtLAupRB0gHodDiP6QtU/+Qh/hmdPoEXPymNJYww9XX2/G7yoIEqP5o+Vdjj3vGY
+        fj2T7AOuB6aI8b2r5LBM4BOwjrdzvTO6wocJN9FKZzs/0PKd3jP6fotiGKMfpgAM/cDvR2uGduc4
+        mGC7qMugRNF7bfBM6Lc/77FAf+lQf8c0lo87c21hzSjCRaKDpgnt4iQ+kDj5eLuxpD7QCAz1MUrx
+        imPn7CnUY1qDNz388Zkm9OXcMd3fkwIgCAS5u0aGyrr2DV1wPeqF2OFtwtqTZ9W7l81w3GhZNPzB
+        M3mn7P88klADKuM9bMxlY2AZ4pKIxu46ZwsYj+mbJhGVNtrXWzwl+AmcxUNrcfknEf3NiA4997yN
+        o4FFjfN8nmbLfD5NBOq0XdgGu2eDend59nZ2jU7zbDKZptkkmtfNNF8zJtny/fk1a55Ol2mWT/JE
+        BBtk85owv0tfj26x+Syb3OX53eUKeVuAy760J3Oj6M/whXYLpjt2ndODg1bdtloU02wKOtGPn7aY
+        4yHyHX4Qjg/bNNu3B1+e3KwqfTjV+7p7Sg/HeukQ73nw/NkiX0znyzy7xCN3hKcDGjuUAKGSYSml
+        uPz0L2sspep3BgAA
+    headers:
+      CF-RAY:
+      - 9e2ee9249a4d3a37-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:36 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=tq5g6gpSiuSIsa9X32VkGbDiYn3YQPdwxtZQoj1RcP8-1774619914.9796748-1.0.1.1-5udyh5.imnPUwhvIYpGCo8nd8QSdAu5qLxvH9esHBGz6aJWIW0hOwQA8_DkKakgxXVjcmRqncVhRxGcj6yfxsaJ7RGgC8Ppq3LR_NzwEhDhsDUIPcyniCyAR1925zGko;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 27 Mar 2026 14:28:36
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '991'
+      x-ratelimit-remaining-tokens:
+      - '9673'
+      x-ratelimit-reset-requests:
+      - 12m57.599s
+      x-ratelimit-reset-tokens:
+      - 11.635s
+      x-request-id:
+      - req_01kmqsdwr6fdstwhkhpx0qvh9r
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages":[{"role":"system","content":"You are an expert Go-To-Market
+      (GTM) strategist and copywriter.\nYour goal is to generate high-quality GTM
+      assets based on the strict context constraints provided.\nYou must adhere completely
+      to the Brand Profile tone rules, and NEVER use disallowed claims.\n"},{"role":"user","content":"Please
+      generate content for a CHANGELOG.\nUse the following context constraints:\n===
+      PRODUCT CHANGE EVENT ===\nTitle: Smart Alerts: AI-powered anomaly detection\nDescription:
+      Automatically surfaces statistically significant metric drops and spikes to
+      analysts, cutting manual investigation time by ~60%.\n\nLaunch Tier: TIER_1\nLaunch
+      Decision Reasons: [\"High customer impact \\u2014 affects all dashboard users\",
+      \"Addresses #1 support ticket theme: missed anomalies\"]\n\n=== BRAND PROFILE
+      ===\nProduct Summary: Acme Analytics is a B2B SaaS platform helping data teams
+      monitor business KPIs in real time.\nTone Rules: {\"voice\": \"confident but
+      approachable\", \"avoid\": [\"hype\", \"jargon\"]}\nAllowed Claims: [\"60% reduction
+      in investigation time\", \"SOC 2 Type II certified\"]\nDISALLOWED Claims (NEVER
+      USE): [\"best in class\", \"industry leading\", \"guaranteed ROI\"]\n\n=== TARGET
+      AUDIENCES ===\nPersona: Data Analyst\n  - Pain Points: [\"Too many false-positive
+      alerts\", \"Alert fatigue from manual monitoring\"]\n  - Desired Outcomes: [\"Catch
+      real anomalies faster\", \"Less time on dashboards\"]\n  - Typical Objections:
+      [\"Will it trigger too often?\"]\n\nPersona: Engineering Manager\n  - Pain Points:
+      [\"Team spends hours on manual metric review\"]\n  - Desired Outcomes: [\"Reduce
+      on-call burden\", \"Confidence in data quality\"]\n  - Typical Objections: [\"Integration
+      complexity\", \"Cost overhead\"]\n\n\n---\nUSER PREFERENCE / LEARNING BIAS:\nNo
+      specific preference found. Provide two balanced variants.\n---\n\nCRITICAL:
+      You must generate EXACTLY TWO variants and return them in valid JSON format.\nVariant
+      A: \"Short and Direct\" (Punchy, get straight to the point)\nVariant B: \"Detailed
+      and Narrative\" (Story-driven, explanatory, slightly longer)\n\nInstructions
+      for Preference:\nWhile you must still provide both variants, you should ensure
+      that the variant corresponding to the \"USER PREFERENCE\" above is exceptionally
+      strong and tailored.\n\nOutput Format (JSON only):\n{\n  \"variant_a\": \"Text
+      for variant A...\",\n  \"variant_b\": \"Text for variant B...\"\n}\n"}],"model":"llama-3.3-70b-versatile","n":1,"reasoning_effort":null,"reasoning_format":null,"service_tier":"on_demand","stop":null,"stream":false,"temperature":0.7}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2599'
+      Content-Type:
+      - application/json
+      Cookie:
+      - __cf_bm=tq5g6gpSiuSIsa9X32VkGbDiYn3YQPdwxtZQoj1RcP8-1774619914.9796748-1.0.1.1-5udyh5.imnPUwhvIYpGCo8nd8QSdAu5qLxvH9esHBGz6aJWIW0hOwQA8_DkKakgxXVjcmRqncVhRxGcj6yfxsaJ7RGgC8Ppq3LR_NzwEhDhsDUIPcyniCyAR1925zGko
+      Host:
+      - api.groq.com
+      User-Agent:
+      - langchain/1.1.2
+      X-Stainless-Arch:
+      - other:amd64
+      X-Stainless-Async:
+      - 'false'
+      X-Stainless-Lang:
+      - python
+      X-Stainless-OS:
+      - Windows
+      X-Stainless-Package-Version:
+      - 0.37.1
+      X-Stainless-Runtime:
+      - CPython
+      X-Stainless-Runtime-Version:
+      - 3.12.11
+      x-stainless-retry-count:
+      - '0'
+    method: POST
+    uri: https://api.groq.com/openai/v1/chat/completions
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/4VUyY7jNhC95ysIAoNcJEPyJtu3CZBDzgkwhzhwl8SSxLFEyiTlbnfD/55Hb41u
+        TDI3iazlLcV6k1rJjaxaClU/dGk+n/M6V7O0rmuVzstllVJOeary1aKYrWZZXU5lIm35natwS5xU
+        FqkctDW4qhxTYBTNi2K+zNfrfJnI3iruEN511FM6m8zSIivTIztPQXcc01qrK/Zy8/eb1Ebxi9xk
+        yGPvqWG5eZPOIm4jyXvtA5kQc6wJbCKMp6en796arXnbGiG28khOI2ZHW7nB7zf+9chCm+CsGitW
+        4s+eXBBfO3bBJ4KM+PpHOthndrgjY3vqTkJxAEeQEjUYjY5FAFlBY8B90BV1CPKjqwm4BTAFALsf
+        68boGj8miJ6D05VQzg4exZXwg96zn4i/Wu0FOo4xvyczUgeMR0aVhi6Ng+5ZlCexzL4ApVIOcmjT
+        AAjA2AHdh8GCCNruOcRjxMcWVNcRO0IBRyjybWnJKTF6SD7ZyuSjTOVDJrDkl0rDQDRAKWNHU/Gl
+        YUf4bIWtP6snGuo5xSSYJnb8oFbHMBkOeigcK15FvWmscayNONnR3VSCKr+dPkmsFTzW9SnW/m+V
+        P8ubfEApqjH8XOObJXcCz+TF4LR1OuhXCKLGqLrQqNTqpkVND5zshO4HqkLy/6onV2OuJoJ4lNSM
+        fYl8a/iHVm5ErxGr3uWaiG86tJ8MUBRIBKYeNDHKFZ5yi7kC03eZa/KBXQJxGCg6QLgShwAPnDeI
+        14kEBVRHHoQC79rZ/q5fb40OUMU0E/F79Jw5/sRrOO2uKKjzFqM0XNy+1rzIDb+tSaN/ohwdrL30
+        1CaujUgVb7qOjlfxvV6pHdBUhxPGdmvOW4O3Ls+J7GwzOFtiY5ix6xJZa6N9u4tlsIc2Et4M8vxP
+        Isf7BjmMPPIu0sZumWSLeVYsi0SiSj+EXbB7Nqi2mGXvZ/fY2WxaLPJ5XDn3VfdIyFf5x/Nb0mK9
+        mK6n0xVaBBuoeyQUef44usUup6vFsphPi/MN764Ekb2yz+bOz5/gYL8DTWiMsbzsvXrYLVf1Yj6j
+        oqqwEV92jbOHSPay1h0fdlm+7w9evbzOWRlqy/4lo/Xw2qxjvOfLps4y7P31aro4xyN3xCYGNHYo
+        AUKK4ayS51/+BUEK0DgtBgAA
+    headers:
+      CF-RAY:
+      - 9e2ee92c6acc3b22-BOM
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 27 Mar 2026 13:58:36 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      set-cookie:
+      - __cf_bm=IOUcKCU7ZPDq8WF4h.RyBZvWu.F10TkF78nroRpjbUk-1774619916.2260947-1.0.1.1-CgU0bKypGVGYzRtcCqQOBgKrJbNCf.b4VzkuSrJIJLnPj72Sg.RCEU6cI.t7jsNSYzzAq1XsnWeaFnCg6J70WntBr5e7qk7PNmPGQCpAIRIpT9vJ7J05JYYs9b6x8cgH;
+        HttpOnly; Secure; Path=/; Domain=groq.com; Expires=Fri, 27 Mar 2026 14:28:36
+        GMT
+      vary:
+      - Origin
+      via:
+      - 1.1 google
+      x-groq-region:
+      - bom
+      x-ratelimit-limit-requests:
+      - '1000'
+      x-ratelimit-limit-tokens:
+      - '12000'
+      x-ratelimit-remaining-requests:
+      - '990'
+      x-ratelimit-remaining-tokens:
+      - '8908'
+      x-ratelimit-reset-requests:
+      - 14m24s
+      x-ratelimit-reset-tokens:
+      - 15.46s
+      x-request-id:
+      - req_01kmqsdxz4ednahbmx0a9pzg9c
+    status:
+      code: 200
+      message: OK
+version: 1
