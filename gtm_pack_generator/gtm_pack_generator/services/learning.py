@@ -13,7 +13,7 @@ def get_workspace_preferences(db: Session, workspace_id: uuid.UUID, asset_type: 
     
     Returns a preference hint string for the LLM.
     """
-    from emiva_core.db import crud
+    import emiva_core.db.crud as crud
     
     approved_assets = crud.get_approved_assets_for_learning(db, workspace_id, asset_type)
     
