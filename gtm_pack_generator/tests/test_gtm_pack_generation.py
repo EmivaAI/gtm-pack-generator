@@ -32,9 +32,6 @@ my_vcr = vcr.VCR(
     filter_headers=["authorization", "x-api-key"],
 )
 
-RESULTS_FILE = "tests/integration/test_gtm_pack_generation_results.md"
-
-
 # ---------------------------------------------------------------------------
 # Narrative fixtures
 # ---------------------------------------------------------------------------
@@ -234,20 +231,7 @@ class TestGenerateGtmPack:
         for asset in assets:
             assert asset.status == AssetStatus.DRAFT
 
-    def test_write_results_to_markdown(self):
-        """Write all LLM-generated asset content to a markdown file for review."""
-        assets = [obj for obj in self.db._added if isinstance(obj, GtmAsset)]
 
-        with open(RESULTS_FILE, "w", encoding="utf-8") as f:
-            f.write("# GTM Pack Generation Results\n\n")
-            f.write(f"**Candidate ID:** `{CANDIDATE_ID}`\n")
-            f.write("**Status:** `SUCCESS`\n\n")
-
-            for asset in assets:
-                f.write(f"## {asset.asset_type.value}\n")
-                f.write(f"```markdown\n{asset.content_draft}\n```\n\n")
-
-        print(f"\nResults written to {RESULTS_FILE}")
 
 
 class TestGenerateGtmPackCandidateNotFound:
