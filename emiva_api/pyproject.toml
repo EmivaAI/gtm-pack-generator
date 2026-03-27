@@ -1,0 +1,20 @@
+[project]
+name = "emiva_api"
+version = "0.1.0"
+description = "Core Data API for Emiva"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.135.1",
+    "uvicorn>=0.42.0",
+    "emiva_core",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["api"]
+
+[tool.uv.sources]
+emiva_core = { workspace = true }
