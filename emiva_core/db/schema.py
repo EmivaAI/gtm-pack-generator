@@ -146,8 +146,8 @@ class ChangeEvent(Base):
         UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     workspace_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("workspaces.id"))
-    source_event_id: Mapped[uuid.UUID] = mapped_column(
-        ForeignKey("source_events.id"), unique=True
+    source_event_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+        ForeignKey("source_events.id"), unique=True, nullable=True
     )
     external_ticket_id: Mapped[Optional[str]] = mapped_column(String)
     title: Mapped[str] = mapped_column(String)

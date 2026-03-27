@@ -19,17 +19,16 @@ class WorkspaceCreate(BaseModel):
 
 class BrandProfileCreate(BaseModel):
     workspace_id: uuid.UUID
-    name: str
     product_summary: str
-    tone_rules: Optional[str] = None
-    allowed_claims: Optional[str] = None
-    disallowed_claims: Optional[str] = None
+    tone_rules: Optional[Any] = None
+    allowed_claims: Optional[Any] = None
+    disallowed_claims: Optional[Any] = None
 
 class AudienceSegmentCreate(BaseModel):
     workspace_id: uuid.UUID
     persona_name: str
-    pain_points: Optional[str] = None
-    desired_outcomes: Optional[str] = None
+    pain_points: Optional[Any] = None
+    desired_outcomes: Optional[Any] = None
 
 class ChangeEventCreate(BaseModel):
     workspace_id: uuid.UUID
@@ -46,7 +45,7 @@ class LaunchCandidateCreate(BaseModel):
     change_event_id: uuid.UUID
     tier: str
     score: float
-    reasons: Optional[str] = None
+    reasons: Optional[Any] = None
     is_external_safe: bool = True
     status: str = "PENDING"
     created_at: Optional[datetime] = None
@@ -70,7 +69,7 @@ class ApprovalEventCreate(BaseModel):
     user_id: uuid.UUID
     action: str
     comments: Optional[str] = None
-    edit_diff: Optional[str] = None
+    edit_diff: Optional[Any] = None
     created_at: Optional[datetime] = None
 
 @router.post("/workspaces")

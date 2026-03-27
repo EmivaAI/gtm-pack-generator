@@ -10,6 +10,14 @@ resolution-markers = [
     "python_full_version < '3.13' and sys_platform != 'win32'",
 ]
 
+[manifest]
+members = [
+    "emiva-api",
+    "emiva-core",
+    "emiva-workspace",
+    "gtm-pack-generator",
+]
+
 [[package]]
 name = "aioitertools"
 version = "0.13.0"
@@ -502,24 +510,50 @@ wheels = [
 ]
 
 [[package]]
-name = "emiva"
+name = "emiva-api"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "emiva_api" }
+dependencies = [
+    { name = "emiva-core" },
+    { name = "fastapi" },
+    { name = "uvicorn" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "emiva-core", editable = "emiva_core" },
+    { name = "fastapi", specifier = ">=0.135.1" },
+    { name = "uvicorn", specifier = ">=0.42.0" },
+]
+
+[[package]]
+name = "emiva-core"
+version = "0.1.0"
+source = { editable = "emiva_core" }
 dependencies = [
     { name = "alembic" },
-    { name = "arize-phoenix" },
-    { name = "faker" },
-    { name = "fastapi" },
-    { name = "httpx" },
-    { name = "langchain" },
-    { name = "langchain-anthropic" },
-    { name = "langchain-groq" },
-    { name = "langchain-openai" },
-    { name = "openinference-instrumentation-langchain" },
     { name = "psycopg2-binary" },
     { name = "pydantic-settings" },
     { name = "python-json-logger" },
     { name = "sqlalchemy" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "alembic", specifier = ">=1.18.4" },
+    { name = "psycopg2-binary", specifier = ">=2.9.11" },
+    { name = "pydantic-settings", specifier = ">=2.13.1" },
+    { name = "python-json-logger", specifier = ">=2.0.7" },
+    { name = "sqlalchemy", specifier = ">=2.0.48" },
+]
+
+[[package]]
+name = "emiva-workspace"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "emiva-core" },
+    { name = "httpx" },
     { name = "uvicorn" },
 ]
 
@@ -532,20 +566,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "alembic", specifier = ">=1.18.4" },
-    { name = "arize-phoenix", specifier = ">=4.32.0" },
-    { name = "faker", specifier = ">=40.11.0" },
-    { name = "fastapi", specifier = ">=0.135.1" },
+    { name = "emiva-core", editable = "emiva_core" },
     { name = "httpx", specifier = ">=0.27.0" },
-    { name = "langchain", specifier = ">=0.3.0" },
-    { name = "langchain-anthropic", specifier = ">=0.2.0" },
-    { name = "langchain-groq", specifier = ">=1.1.2" },
-    { name = "langchain-openai", specifier = ">=0.2.0" },
-    { name = "openinference-instrumentation-langchain", specifier = ">=0.1.30" },
-    { name = "psycopg2-binary", specifier = ">=2.9.11" },
-    { name = "pydantic-settings", specifier = ">=2.13.1" },
-    { name = "python-json-logger", specifier = ">=2.0.7" },
-    { name = "sqlalchemy", specifier = ">=2.0.48" },
     { name = "uvicorn", specifier = ">=0.42.0" },
 ]
 
@@ -554,18 +576,6 @@ dev = [
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "ruff", specifier = ">=0.15.7" },
     { name = "vcrpy", specifier = ">=7.0.0" },
-]
-
-[[package]]
-name = "faker"
-version = "40.11.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "tzdata", marker = "sys_platform == 'win32'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/fa/e5/b16bf568a2f20fe7423282db4a4059dbcadef70e9029c1c106836f8edd84/faker-40.11.1.tar.gz", hash = "sha256:61965046e79e8cfde4337d243eac04c0d31481a7c010033141103b43f603100c", size = 1957415, upload-time = "2026-03-23T14:05:50.233Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/ec/3c4b78eb0d2f6a81fb8cc9286745845bff661e6815741eff7a6ac5fcc9ea/faker-40.11.1-py3-none-any.whl", hash = "sha256:3af3a213ba8fb33ce6ba2af7aef2ac91363dae35d0cec0b2b0337d189e5bee2a", size = 1989484, upload-time = "2026-03-23T14:05:48.793Z" },
 ]
 
 [[package]]
@@ -716,6 +726,33 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/3c/05/33a7a4985586f27e1de4803887c417ec7ced145ebd069bc38a9607059e2b/grpcio-1.78.0-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:207db540302c884b8848036b80db352a832b99dfdf41db1eb554c2c2c7800f65", size = 7696837, upload-time = "2026-02-06T09:56:40.173Z" },
     { url = "https://files.pythonhosted.org/packages/73/77/7382241caf88729b106e49e7d18e3116216c778e6a7e833826eb96de22f7/grpcio-1.78.0-cp314-cp314-win32.whl", hash = "sha256:57bab6deef2f4f1ca76cc04565df38dc5713ae6c17de690721bdf30cb1e0545c", size = 4142439, upload-time = "2026-02-06T09:56:43.258Z" },
     { url = "https://files.pythonhosted.org/packages/48/b2/b096ccce418882fbfda4f7496f9357aaa9a5af1896a9a7f60d9f2b275a06/grpcio-1.78.0-cp314-cp314-win_amd64.whl", hash = "sha256:dce09d6116df20a96acfdbf85e4866258c3758180e8c49845d6ba8248b6d0bbb", size = 4929852, upload-time = "2026-02-06T09:56:45.885Z" },
+]
+
+[[package]]
+name = "gtm-pack-generator"
+version = "0.1.0"
+source = { editable = "gtm_pack_generator" }
+dependencies = [
+    { name = "arize-phoenix" },
+    { name = "emiva-core" },
+    { name = "httpx" },
+    { name = "langchain" },
+    { name = "langchain-anthropic" },
+    { name = "langchain-groq" },
+    { name = "langchain-openai" },
+    { name = "openinference-instrumentation-langchain" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "arize-phoenix", specifier = ">=4.32.0" },
+    { name = "emiva-core", editable = "emiva_core" },
+    { name = "httpx", specifier = ">=0.27.0" },
+    { name = "langchain", specifier = ">=0.3.0" },
+    { name = "langchain-anthropic", specifier = ">=0.2.0" },
+    { name = "langchain-groq", specifier = ">=1.1.2" },
+    { name = "langchain-openai", specifier = ">=0.2.0" },
+    { name = "openinference-instrumentation-langchain", specifier = ">=0.1.30" },
 ]
 
 [[package]]

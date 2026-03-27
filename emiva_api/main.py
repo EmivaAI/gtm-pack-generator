@@ -24,4 +24,4 @@ app.add_middleware(
 def health_check():
     return {"status": "up", "version": "1.0.0"}
 
-app.include_router(crud.router, tags=["CRUD"])
+app.include_router(crud.router, prefix="/api", tags=["CRUD"])

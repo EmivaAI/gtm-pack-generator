@@ -8,7 +8,8 @@ from emiva_core.core.logger import setup_logger
 logger = setup_logger(__name__)
 
 # API Base URL
-API_BASE_URL = "http://localhost:8001/api/v1"
+# API Base URL (Can be overridden via EMIVA_API_URL)
+API_BASE_URL = os.getenv("EMIVA_API_URL", "http://localhost:8001/api/v1")
 
 def load_narrative_json():
     json_path = os.path.join(os.path.dirname(__file__), "seed-narrative.json")
@@ -30,13 +31,13 @@ def wait_for_server(url, timeout=30):
     return False
 
 def seed_narrative():
-    if not wait_for_server(BASE_URL):
+    if not wait_for_server(API_BASE_URL):
         print("Error: Server not reachable. Please run: uv run uvicorn gtm_pack_generator.main:app --reload")
         return
 
     data = load_narrative_json()
 
-    with httpx.Client(base_url=BASE_URL, timeout=30.0) as client:
+    with httpx.Client(base_url=API_BASE_URL, timeout=30.0) as client:
         print("Recreating database schema via API...")
         client.post("/reset-db")
 
@@ -44,14 +45,17 @@ def seed_narrative():
         print(f"Seeding Narrative for '{workspace_name}'...")
 
         # 1. Workspace
-        ws_res = client.post("/workspaces", json={"name": workspace_name}).json()
+        resp = client.post("/workspaces", json={"name": workspace_name})
+        if resp.status_code != 200:
+            print(f"Error creating workspace: {resp.status_code} - {resp.text}")
+            return
+        ws_res = resp.json()
         workspace_id = ws_res["id"]
 
         # 2. Brand Profile
         bp_data = data["brand_profile"]
         client.post("/brand-profiles", json={
             "workspace_id": workspace_id,
-            "name": workspace_name, # Default name
             "product_summary": bp_data["product_summary"],
             "tone_rules": bp_data["tone_rules"],
             "allowed_claims": bp_data["allowed_claims"],

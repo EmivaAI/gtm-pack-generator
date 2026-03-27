@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     def database_url(self) -> str:
         return f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
 
-    llm_provider: str
-    llm_model_name: str
+    llm_provider: str | None = None
+    llm_model_name: str | None = None
 
     openai_api_key: str | None = None
     anthropic_api_key: str | None = None
@@ -40,6 +40,8 @@ class Settings(BaseSettings):
     @classmethod
     def validate_llm_provider_and_key(cls, values):
         provider = values.get("llm_provider")
+        if not provider:
+            return values
 
         supported_providers = [p.value for p in Provider]
         if provider not in supported_providers:
