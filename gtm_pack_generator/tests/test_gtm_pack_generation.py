@@ -22,11 +22,16 @@ from emiva_core.db.schema import (
 )
 from gtm_pack_generator.services.pack_generator import generate_gtm_pack
 
+import os
+
+# Resolve cassette path relative to this test file to support running from any directory
+CASSETTE_DIR = os.path.join(os.path.dirname(__file__), "cassettes")
+
 # Configure VCR to record LLM calls to a local cassette.
 # This prevents expensive repeated API calls.
 my_vcr = vcr.VCR(
     serializer="yaml",
-    cassette_library_dir="tests/integration/cassettes",
+    cassette_library_dir=CASSETTE_DIR,
     record_mode="once",
     match_on=["method", "scheme", "host", "port", "path", "query"],
     filter_headers=["authorization", "x-api-key"],
