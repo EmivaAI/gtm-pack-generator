@@ -7,6 +7,8 @@ dependencies = [
     "uvicorn>=0.42.0",
     "httpx>=0.27.0",
     "emiva_core",
+    "gtm_pack_generator",
+    "emiva_api",
 ]
 
 [tool.uv.workspace]
