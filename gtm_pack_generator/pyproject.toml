@@ -15,14 +15,11 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.package-dir]
-"gtm_pack_generator" = "gtm_pack_generator"
-
-[tool.setuptools]
-packages = ["gtm_pack_generator", "gtm_pack_generator.agent", "gtm_pack_generator.api", "gtm_pack_generator.services"]
+[tool.hatch.build.targets.wheel]
+packages = ["gtm_pack_generator"]
 
 [tool.uv.sources]
 emiva_core = { workspace = true }
