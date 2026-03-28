@@ -1,6 +1,33 @@
+"""
+services/change_event_processor.py
+------------------------------------
+Converts unprocessed SourceEvent rows into ChangeEvent records.
+
+Processing pipeline
+~~~~~~~~~~~~~~~~~~~
+1. Query all SourceEvent rows where processed=False.
+2. For each event, dispatch to the appropriate per-source preprocessor:
+       jira   → preprocess_jira()
+       github → preprocess_github()
+       slack  → preprocess_slack()
+3. Build a ChangeEvent from the preprocessed data and mark the source as processed.
+4. If preprocessing fails, the event is still marked processed and a
+   ChangeEvent with a processing_error signal is stored — this prevents
+   a single bad event from blocking the entire queue.
+
+Helper utilities
+~~~~~~~~~~~~~~~~
+_safe()              — Null-safe nested dict accessor
+extract_jira_key()   — Regex-based Jira key extractor (e.g. EMIVA-123)
+determine_change_type() — Maps issue types / commit prefixes to change_type values
+"""
+
 import re
 import json
 from database.db import Session, SourceEvent, ChangeEvent
+from emiva_core.core.logger import setup_logger
+
+logger = setup_logger("ingestion.services.processor")
 
 
 # ---------------------------------------------------------------------------
@@ -61,6 +88,7 @@ def determine_change_type(issue_type: str = None, pr_title: str = None, summary:
 # ---------------------------------------------------------------------------
 
 def preprocess_jira(payload: dict) -> dict:
+    """Extract and normalise fields from a Jira webhook payload."""
     issue  = payload.get('issue') or {}
     fields = issue.get('fields') or {}
     key    = issue.get('key')
@@ -89,6 +117,7 @@ def preprocess_jira(payload: dict) -> dict:
 
 
 def preprocess_github(payload: dict) -> dict:
+    """Extract and normalise fields from a GitHub webhook payload (PR or push)."""
     pr   = payload.get('pull_request') or {}
     repo = _safe(payload, 'repository', 'name', default='Unknown')
 
@@ -120,7 +149,7 @@ def preprocess_github(payload: dict) -> dict:
             },
         }
 
-    # Push / commit event — previously ignored; now fully handled
+    # Push / commit event
     commits   = payload.get('commits') or []
     messages  = [c.get('message') or '' for c in commits if isinstance(c, dict)]
     first_msg = messages[0] if messages else ''
@@ -153,6 +182,7 @@ def preprocess_github(payload: dict) -> dict:
 
 
 def preprocess_slack(payload: dict) -> dict:
+    """Extract and normalise fields from a Slack event_callback payload."""
     event   = payload.get('event') or {}
     text    = event.get('text') or ''
     actor   = event.get('user')
@@ -161,10 +191,11 @@ def preprocess_slack(payload: dict) -> dict:
     jira_key = extract_jira_key(text)
 
     if not jira_key:
-        print(f"  [INFO] Slack message has no Jira key — storing as standalone signal (channel={channel})")
+        # No Jira key found — the event is stored as a standalone orphan signal
+        logger.info("Slack message has no Jira key — storing as standalone signal (channel=%s)", channel)
 
     return {
-        "external_ticket_id": jira_key,          # None is fine; stored as orphan signal
+        "external_ticket_id": jira_key,           # None is fine; stored as orphan signal
         "title":       f"Slack message: {text[:120]}" if text else "Slack message (empty)",
         "description": text,
         "ticket_url":  "",
@@ -173,9 +204,9 @@ def preprocess_slack(payload: dict) -> dict:
         "severity":    "low",
         "actors":      [actor] if actor else [],
         "raw_signals": {
-            "channel":    channel,
-            "thread_ts":  thread,
-            "has_thread": thread is not None,
+            "channel":      channel,
+            "thread_ts":    thread,
+            "has_thread":   thread is not None,
             "has_jira_key": jira_key is not None,
         },
     }
@@ -192,7 +223,14 @@ PREPROCESSORS = {
 # Main processor
 # ---------------------------------------------------------------------------
 
-def process_unprocessed_events():
+def process_unprocessed_events() -> None:
+    """
+    Query all unprocessed SourceEvents and produce a ChangeEvent for each one.
+
+    Each event is marked as processed regardless of success or failure —
+    a failure is recorded in the ChangeEvent's raw_signals so it can be
+    investigated without blocking subsequent events.
+    """
     session = Session()
     try:
         unprocessed = (
@@ -202,15 +240,15 @@ def process_unprocessed_events():
         )
 
         if not unprocessed:
-            print("No new events to process.")
+            logger.info("No new events to process.")
             return
 
-        print(f"Processing {len(unprocessed)} new event(s)...")
+        logger.info("Processing %d new event(s)...", len(unprocessed))
 
         for event in unprocessed:
             preprocessor = PREPROCESSORS.get(event.source_type)
             if not preprocessor:
-                print(f"  [SKIP] Unknown source_type '{event.source_type}' for event {event.id}")
+                logger.warning("  [SKIP] Unknown source_type '%s' for event %s", event.source_type, event.id)
                 event.processed = True          # don't block the queue on unknown types
                 continue
 
@@ -218,8 +256,8 @@ def process_unprocessed_events():
                 data = preprocessor(event.raw_payload)
             except Exception as e:
                 # Mark as processed so it doesn't block every subsequent run.
-                # The error is surfaced in raw_signals so it can be investigated.
-                print(f"  [ERROR] Failed to preprocess event {event.id}: {e}")
+                # The error is surfaced in raw_signals for investigation.
+                logger.error("  [ERROR] Failed to preprocess event %s: %s", event.id, e)
                 event.processed = True
                 error_change = ChangeEvent(
                     workspace_id=event.workspace_id,
@@ -256,14 +294,14 @@ def process_unprocessed_events():
             )
             session.add(change)
             event.processed = True
-            print(f"  [OK] {event.source_type.upper()} event {event.id} → change_event created")
+            logger.info("  [OK] %s event %s → change_event created", event.source_type.upper(), event.id)
 
         session.commit()
-        print("Processing complete.")
+        logger.info("Processing complete.")
 
     except Exception as e:
         session.rollback()
-        print(f"Error during processing: {e}")
+        logger.error("Error during processing: %s", e)
         raise
     finally:
         session.close()
