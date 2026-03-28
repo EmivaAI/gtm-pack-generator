@@ -48,7 +48,10 @@ pip install -r requirements.txt
 
 ### 2. Initialise the Database
 ```bash
-python -c "from database.db import init_db; init_db()"
+# Database tables must be created or migrated using Alembic from the root directory.
+cd ..
+alembic upgrade head
+cd injestion
 ```
 
 ### 3. Expose with ngrok (for live webhooks)

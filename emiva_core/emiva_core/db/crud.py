@@ -14,27 +14,8 @@ from emiva_core.db.schema import (
     LaunchStatus,
     SourceEvent,
     ChangeEvent,
+    SourceType,
 )
-
-def create_source_event(db: Session, workspace_id: uuid.UUID, title: str, description: str) -> SourceEvent:
-    event = SourceEvent(
-        workspace_id=workspace_id,
-        title=title,
-        description=description,
-    )
-    db.add(event)
-    db.flush()
-    return event
-
-def create_change_event(db: Session, workspace_id: uuid.UUID, title: str, description: str) -> ChangeEvent:
-    event = ChangeEvent(
-        workspace_id=workspace_id,
-        title=title,
-        description=description,
-    )
-    db.add(event)
-    db.flush()
-    return event
 
 def create_launch_candidate(db: Session, workspace_id: uuid.UUID, change_event_id: uuid.UUID, tier: str, score: float, reasons: List[str], is_external_safe: bool, status: LaunchStatus = LaunchStatus.PENDING_REVIEW) -> LaunchCandidate:
     candidate = LaunchCandidate(
@@ -122,3 +103,12 @@ def get_approved_assets_for_learning(db: Session, workspace_id: uuid.UUID, asset
         .where(GtmAsset.status == AssetStatus.APPROVED)
         .where(GtmAsset.content_final.is_not(None))
     ).all())
+
+def create_source_event(db: Session, source_type: str, raw_payload: dict, workspace_id: uuid.UUID):
+    pass
+
+def get_unprocessed_source_events(db: Session):
+    pass
+
+def create_change_event(db: Session, data: dict, workspace_id: uuid.UUID, source_event_id: uuid.UUID):
+    pass

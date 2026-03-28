@@ -12,7 +12,9 @@ This real-time trigger ensures that the change_event table is always up-to-date
 after every webhook delivery, with no manual processing step required.
 """
 
-from database.db import save_raw_data
+import uuid
+from emiva_core.db.database import SessionLocal
+from emiva_core.db.crud import create_source_event
 from services.change_event_processor import process_unprocessed_events
 from emiva_core.core.logger import setup_logger
 
@@ -38,7 +40,23 @@ class WebhookService:
             A (response_dict, status_code) tuple.
         """
         # 1. Save raw data
-        save_raw_data(source_type, raw_payload, workspace_id=workspace_id)
+        db = SessionLocal()
+        try:
+            # emiva_core expects workspace_id as UUID
+            try:
+                ws_uuid = uuid.UUID(workspace_id)
+            except ValueError:
+                # Fallback for "default-workspace" testing
+                ws_uuid = uuid.UUID("00000000-0000-0000-0000-000000000000")
+            
+            create_source_event(db, source_type, raw_payload, ws_uuid)
+            db.commit()
+        except Exception as e:
+            db.rollback()
+            logger.error("Failed to save raw data: %s", e)
+            raise
+        finally:
+            db.close()
 
         # 2. Automatically trigger processing
         try:

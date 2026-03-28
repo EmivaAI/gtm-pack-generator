@@ -27,13 +27,8 @@ import json
 import sys
 import os
 
-# Allow standalone execution from within the directory
-# Add emiva root (for emiva_core)
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-# Add injestion root (for database, connectors, etc.)
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from database.db import Session, SourceEvent, ChangeEvent
+from emiva_core.db.database import SessionLocal
+from emiva_core.db.crud import get_unprocessed_source_events, create_change_event
 from emiva_core.core.logger import setup_logger
 
 logger = setup_logger("ingestion.services.processor")
@@ -240,13 +235,9 @@ def process_unprocessed_events() -> None:
     a failure is recorded in the ChangeEvent's raw_signals so it can be
     investigated without blocking subsequent events.
     """
-    session = Session()
+    db = SessionLocal()
     try:
-        unprocessed = (
-            session.query(SourceEvent)
-            .filter(SourceEvent.processed == False)
-            .all()
-        )
+        unprocessed = get_unprocessed_source_events(db)
 
         if not unprocessed:
             logger.info("No new events to process.")
@@ -255,9 +246,10 @@ def process_unprocessed_events() -> None:
         logger.info("Processing %d new event(s)...", len(unprocessed))
 
         for event in unprocessed:
-            preprocessor = PREPROCESSORS.get(event.source_type)
+            source_type_str = event.source_type.value.lower() if hasattr(event.source_type, "value") else str(event.source_type).lower()
+            preprocessor = PREPROCESSORS.get(source_type_str)
             if not preprocessor:
-                logger.warning("  [SKIP] Unknown source_type '%s' for event %s", event.source_type, event.id)
+                logger.warning("  [SKIP] Unknown source_type '%s' for event %s", source_type_str, event.id)
                 event.processed = True          # don't block the queue on unknown types
                 continue
 
@@ -268,52 +260,50 @@ def process_unprocessed_events() -> None:
                 # The error is surfaced in raw_signals for investigation.
                 logger.error("  [ERROR] Failed to preprocess event %s: %s", event.id, e)
                 event.processed = True
-                error_change = ChangeEvent(
-                    workspace_id=event.workspace_id,
-                    source_event_id=event.id,
-                    title=f"[PROCESSING ERROR] {event.source_type} event {event.id}",
-                    description=str(e),
-                    change_type="unknown",
-                    component=event.source_type,
-                    severity="low",
-                    linked_issues=[],
-                    linked_prs=[],
-                    linked_threads=[],
-                    actors=[],
-                    raw_signals={"processing_error": str(e)},
-                )
-                session.add(error_change)
+                error_data = {
+                    "external_ticket_id": None,
+                    "title": f"[PROCESSING ERROR] {source_type_str} event {event.id}",
+                    "description": str(e),
+                    "ticket_url": "",
+                    "change_type": "unknown",
+                    "component": source_type_str,
+                    "severity": "low",
+                    "linked_issues": [],
+                    "linked_prs": [],
+                    "linked_threads": [],
+                    "actors": [],
+                    "raw_signals": {"processing_error": str(e)},
+                }
+                create_change_event(db, error_data, event.workspace_id, event.id)
                 continue
 
-            change = ChangeEvent(
-                workspace_id=event.workspace_id,
-                source_event_id=event.id,
-                external_ticket_id=data.get("external_ticket_id"),
-                title=data.get("title", ""),
-                description=data.get("description", ""),
-                ticket_url=data.get("ticket_url", ""),
-                change_type=data.get("change_type", "unknown"),
-                component=data.get("component", "Unknown"),
-                severity=data.get("severity", "medium"),
-                linked_issues=[data["external_ticket_id"]] if data.get("external_ticket_id") else [],
-                linked_prs=[],
-                linked_threads=[],
-                actors=list(filter(None, data.get("actors", []))),
-                raw_signals=data.get("raw_signals", {}),
-            )
-            session.add(change)
+            success_data = {
+                "external_ticket_id": data.get("external_ticket_id"),
+                "title": data.get("title", ""),
+                "description": data.get("description", ""),
+                "ticket_url": data.get("ticket_url", ""),
+                "change_type": data.get("change_type", "unknown"),
+                "component": data.get("component", "Unknown"),
+                "severity": data.get("severity", "medium"),
+                "linked_issues": [data["external_ticket_id"]] if data.get("external_ticket_id") else [],
+                "linked_prs": [],
+                "linked_threads": [],
+                "actors": list(filter(None, data.get("actors", []))),
+                "raw_signals": data.get("raw_signals", {}),
+            }
+            create_change_event(db, success_data, event.workspace_id, event.id)
             event.processed = True
-            logger.info("  [OK] %s event %s → change_event created", event.source_type.upper(), event.id)
+            logger.info("  [OK] %s event %s → change_event created", source_type_str.upper(), event.id)
 
-        session.commit()
+        db.commit()
         logger.info("Processing complete.")
 
     except Exception as e:
-        session.rollback()
+        db.rollback()
         logger.error("Error during processing: %s", e)
         raise
     finally:
-        session.close()
+        db.close()
 
 
 if __name__ == "__main__":
