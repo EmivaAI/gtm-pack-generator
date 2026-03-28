@@ -11,6 +11,11 @@ Registers three webhook endpoints:
 Database tables must be created or migrated using Alembic from emiva_core.
 """
 
+import sys
+import os
+# Add the parent directory to sys.path so we can import emiva_core
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from flask import Flask, request, jsonify
 from connectors.github_connector import handle_github_webhook
 from connectors.slack_connector import handle_slack_webhook

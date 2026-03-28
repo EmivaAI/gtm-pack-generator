@@ -24,6 +24,15 @@ determine_change_type() — Maps issue types / commit prefixes to change_type va
 
 import re
 import json
+import sys
+import os
+
+# Allow standalone execution from within the directory
+# Add emiva root (for emiva_core)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+# Add injestion root (for database, connectors, etc.)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from database.db import Session, SourceEvent, ChangeEvent
 from emiva_core.core.logger import setup_logger
 
