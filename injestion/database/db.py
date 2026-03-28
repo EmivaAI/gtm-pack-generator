@@ -5,18 +5,15 @@ Defines the SQLAlchemy ORM models for the ingestion service:
   - SourceEvent: raw webhook payloads from GitHub, Jira, and Slack
   - ChangeEvent: consolidated change records produced by the processor
 
-The engine and session factory use the DATABASE_URL from config.py (defaults to
-SQLite). Table creation is handled outside of runtime startup (e.g. via a
-migration script or `Base.metadata.create_all(engine)` in a one-off setup step).
+The engine and session factory are imported from emiva_core.
+Table creation is handled outside of runtime startup (e.g. via a
+migration script).
 """
 
 import uuid
-from sqlalchemy import create_engine, Column, String, JSON, DateTime, Boolean, ForeignKey, Text
+from sqlalchemy import Column, String, JSON, DateTime, Boolean, ForeignKey, Text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 import datetime
-
-from config import config
 
 Base = declarative_base()
 
@@ -56,11 +53,7 @@ class ChangeEvent(Base):
     processed = Column(Boolean, default=False)  # For Stage 3 analysis
 
 
-# ---------------------------------------------------------------------------
-# Engine & session — powered by config.DATABASE_URL (SQLite by default)
-# ---------------------------------------------------------------------------
-engine = create_engine(config.DATABASE_URL)
-Session = sessionmaker(bind=engine)
+from emiva_core.db.database import SessionLocal as Session
 
 
 def save_raw_data(source_type: str, raw_payload: dict, workspace_id: str = "default-workspace") -> None:

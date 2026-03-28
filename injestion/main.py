@@ -8,8 +8,7 @@ Registers three webhook endpoints:
   POST /webhooks/slack   — Slack event callbacks (and URL verification)
   POST /webhooks/jira    — Jira issue events
 
-Database tables must be created before the first run using:
-    python -c "from database.db import Base, engine; Base.metadata.create_all(engine)"
+Database tables must be created or migrated using Alembic from emiva_core.
 """
 
 from flask import Flask, request, jsonify
